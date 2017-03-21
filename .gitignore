@@ -3,7 +3,6 @@ capybara-*.html
 .rspec
 /log
 /tmp
-/config/database.yml
 /db/*.sqlite3
 /db/*.sqlite3-journal
 /public/system
@@ -43,3 +42,8 @@ bower.json
 .byebug_history
 
 /config/database.yml
+
+### Cloud9 ###
+# Cloud9 IDE - http://c9.io
+.c9revisions
+.c9
