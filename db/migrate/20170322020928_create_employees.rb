@@ -17,6 +17,8 @@ class CreateEmployees < ActiveRecord::Migration
       t.decimal :salary
       t.boolean :transport_aid
       t.boolean :integral_salary
+      t.references :area, index: true, foreign_key: true
+      t.references :position, index: true, foreign_key: true
 
       t.timestamps null: false
     end

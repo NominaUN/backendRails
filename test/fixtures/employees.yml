@@ -17,6 +17,8 @@ one:
   salary: 9.99
   transport_aid: false
   integral_salary: false
+  area_id: 
+  position_id: 
 
 two:
   document_type: MyString
@@ -35,3 +37,5 @@ two:
   salary: 9.99
   transport_aid: false
   integral_salary: false
+  area_id: 
+  position_id: 
