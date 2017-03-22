@@ -2,7 +2,7 @@ class CreateEmployees < ActiveRecord::Migration
   def change
     create_table :employees do |t|
       t.string :document_type
-      t.string :document_number
+      t.integer :document_number
       t.string :first_name
       t.string :other_name
       t.string :last_name
