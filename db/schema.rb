@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322020928) do
+ActiveRecord::Schema.define(version: 20170323000800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,24 @@ ActiveRecord::Schema.define(version: 20170322020928) do
     t.index ["position_id"], name: "index_employees_on_position_id", using: :btree
   end
 
+  create_table "fond_employees", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.integer  "fond_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["employee_id"], name: "index_fond_employees_on_employee_id", using: :btree
+    t.index ["fond_id"], name: "index_fond_employees_on_fond_id", using: :btree
+  end
+
+  create_table "fonds", force: :cascade do |t|
+    t.string   "document_type"
+    t.integer  "document_number"
+    t.string   "business_name"
+    t.string   "type_of_fond"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "positions", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -54,4 +72,6 @@ ActiveRecord::Schema.define(version: 20170322020928) do
 
   add_foreign_key "employees", "areas"
   add_foreign_key "employees", "positions"
+  add_foreign_key "fond_employees", "employees"
+  add_foreign_key "fond_employees", "fonds"
 end
