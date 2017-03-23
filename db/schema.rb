@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20170323023949) do
-=======
-ActiveRecord::Schema.define(version: 20170323004815) do
->>>>>>> be812443c810d4945faa4cf0c4901bfd6db346eb
+ActiveRecord::Schema.define(version: 20170323025012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +51,24 @@ ActiveRecord::Schema.define(version: 20170323004815) do
     t.datetime "updated_at",      null: false
     t.index ["area_id"], name: "index_employees_on_area_id", using: :btree
     t.index ["position_id"], name: "index_employees_on_position_id", using: :btree
+  end
+
+  create_table "fond_employees", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.integer  "fond_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["employee_id"], name: "index_fond_employees_on_employee_id", using: :btree
+    t.index ["fond_id"], name: "index_fond_employees_on_fond_id", using: :btree
+  end
+
+  create_table "fonds", force: :cascade do |t|
+    t.string   "document_type"
+    t.integer  "document_number"
+    t.string   "business_name"
+    t.string   "type_of_fond"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "novelties", force: :cascade do |t|
@@ -99,23 +113,6 @@ ActiveRecord::Schema.define(version: 20170323004815) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-
-  create_table "fond_employees", force: :cascade do |t|
-    t.integer  "employee_id"
-    t.integer  "fond_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["employee_id"], name: "index_fond_employees_on_employee_id", using: :btree
-    t.index ["fond_id"], name: "index_fond_employees_on_fond_id", using: :btree
-  end
-
-  create_table "fonds", force: :cascade do |t|
-    t.string   "document_type"
-    t.integer  "document_number"
-    t.string   "business_name"
-    t.string   "type_of_fond"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
   end
 
   create_table "positions", force: :cascade do |t|
@@ -125,27 +122,27 @@ ActiveRecord::Schema.define(version: 20170323004815) do
   end
 
   create_table "vacations", force: :cascade do |t|
-    t.integer  "employee_id"
-    t.float    "paid_days"
-    t.float    "taken_days"
+    t.decimal  "paid_days"
+    t.decimal  "taken_days"
     t.date     "start_date"
     t.date     "end_date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "employee_id"
+    t.integer  "payday_master_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.index ["employee_id"], name: "index_vacations_on_employee_id", using: :btree
+    t.index ["payday_master_id"], name: "index_vacations_on_payday_master_id", using: :btree
   end
 
   add_foreign_key "employees", "areas"
   add_foreign_key "employees", "positions"
-<<<<<<< HEAD
+  add_foreign_key "fond_employees", "employees"
+  add_foreign_key "fond_employees", "fonds"
   add_foreign_key "novelties", "employees"
   add_foreign_key "payday_details", "concepts"
   add_foreign_key "payday_details", "employees"
   add_foreign_key "payday_details", "novelties"
   add_foreign_key "payday_details", "payday_masters"
-=======
-  add_foreign_key "fond_employees", "employees"
-  add_foreign_key "fond_employees", "fonds"
   add_foreign_key "vacations", "employees"
->>>>>>> be812443c810d4945faa4cf0c4901bfd6db346eb
+  add_foreign_key "vacations", "payday_masters"
 end
