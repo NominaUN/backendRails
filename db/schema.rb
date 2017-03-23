@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323000800) do
+ActiveRecord::Schema.define(version: 20170323004815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,8 +70,20 @@ ActiveRecord::Schema.define(version: 20170323000800) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "vacations", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.float    "paid_days"
+    t.float    "taken_days"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["employee_id"], name: "index_vacations_on_employee_id", using: :btree
+  end
+
   add_foreign_key "employees", "areas"
   add_foreign_key "employees", "positions"
   add_foreign_key "fond_employees", "employees"
   add_foreign_key "fond_employees", "fonds"
+  add_foreign_key "vacations", "employees"
 end

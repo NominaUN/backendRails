@@ -4,4 +4,6 @@ class Employee < ActiveRecord::Base
   
   has_many :fond_employees
   has_many :fonds, through: :fond_employees
+  
+  has_many :vacations
 end
