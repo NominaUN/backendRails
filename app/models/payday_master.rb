@@ -1,0 +1,2 @@
+class PaydayMaster < ApplicationRecord
+end
