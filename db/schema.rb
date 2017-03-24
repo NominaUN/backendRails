@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323223615) do
+ActiveRecord::Schema.define(version: 20170324105242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,27 +29,28 @@ ActiveRecord::Schema.define(version: 20170323223615) do
   end
 
   create_table "employees", force: :cascade do |t|
-    t.string   "document_type"
-    t.integer  "document_number"
-    t.string   "first_name"
+    t.string   "document_type",   null: false
+    t.integer  "document_number", null: false
+    t.string   "first_name",      null: false
     t.string   "other_name"
-    t.string   "last_name"
+    t.string   "last_name",       null: false
     t.string   "second_surname"
-    t.date     "birthdate"
-    t.string   "birthplace"
-    t.string   "address"
-    t.string   "phones"
-    t.string   "email"
-    t.date     "admission_date"
+    t.date     "birthdate",       null: false
+    t.string   "birthplace",      null: false
+    t.string   "address",         null: false
+    t.string   "phones",          null: false
+    t.string   "email",           null: false
+    t.date     "admission_date",  null: false
     t.date     "retirement_date"
-    t.decimal  "salary"
-    t.boolean  "transport_aid"
+    t.decimal  "salary",          null: false
+    t.boolean  "transport_aid",   null: false
     t.boolean  "integral_salary"
-    t.integer  "area_id"
-    t.integer  "position_id"
+    t.integer  "area_id",         null: false
+    t.integer  "position_id",     null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["area_id"], name: "index_employees_on_area_id", using: :btree
+    t.index ["email"], name: "index_employees_on_email", unique: true, using: :btree
     t.index ["position_id"], name: "index_employees_on_position_id", using: :btree
   end
 
@@ -72,12 +73,12 @@ ActiveRecord::Schema.define(version: 20170323223615) do
   end
 
   create_table "novelties", force: :cascade do |t|
-    t.string   "novelty_type"
-    t.string   "category"
-    t.decimal  "novelty_value"
-    t.integer  "period"
-    t.integer  "applied"
-    t.string   "description"
+    t.string   "novelty_type",  null: false
+    t.string   "category",      null: false
+    t.decimal  "novelty_value", null: false
+    t.integer  "period",        null: false
+    t.integer  "applied",       null: false
+    t.string   "description",   null: false
     t.decimal  "percentage1"
     t.decimal  "percentage2"
     t.decimal  "percentage3"
@@ -88,13 +89,13 @@ ActiveRecord::Schema.define(version: 20170323223615) do
   end
 
   create_table "payday_details", force: :cascade do |t|
-    t.decimal  "base_value"
-    t.decimal  "win"
-    t.decimal  "loss"
-    t.decimal  "appropiation"
-    t.integer  "worked_days"
-    t.date     "initial_date"
-    t.date     "final_date"
+    t.decimal  "base_value",       null: false
+    t.decimal  "win",              null: false
+    t.decimal  "loss",             null: false
+    t.decimal  "appropiation",     null: false
+    t.integer  "worked_days",      null: false
+    t.date     "initial_date",     null: false
+    t.date     "final_date",       null: false
     t.integer  "concept_id"
     t.integer  "employee_id"
     t.integer  "novelty_id"
