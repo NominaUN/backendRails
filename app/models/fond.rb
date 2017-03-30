@@ -13,7 +13,7 @@ class Fond < ApplicationRecord
 
 	default_scope {order("fonds.business_name ASC")}
 
-	def load_fonds(page=1,per_page=20)
+	def self.load_fonds(page=1,per_page=20)
 		includes(fond_employees: :employees)
 				.paginate(:page => page,:per_page => per_page)
 	end
@@ -40,7 +40,7 @@ class Fond < ApplicationRecord
 	end
 
 
-	def fonds_by_employee(employee, page=1, per_page=20 )
+	def self.fonds_by_employee(employee, page=1, per_page=20 )
 		joins(fond_employees: :employees).where(fond_employees:{
 			employee_id: employee
 		}).paginate(:page => page,:per_page => per_page)

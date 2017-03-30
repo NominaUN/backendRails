@@ -20,34 +20,34 @@ class Employee < ActiveRecord::Base
 
   default_scope {order("employees.last_name ASC")}
 
-  def load_employees(page=1,per_page=20)
+  def self.load_employees(page=1,per_page=20)
     includes(:fonds, :payday_details, vacations: [:novelties])
         .paginate(:page => page,:per_page => per_page)
   end
 
-  def employee_by_id(id)
+  def self.employee_by_id(id)
     includes(:fonds, :payday_details, vacations: [:novelties]).find_by_id(id)
   end
 
-  def employees_by_ids(ids, page=1, per_page=20)
+  def self.employees_by_ids(ids, page=1, per_page=20)
     load_employees(page, per_page).where(employees:{
         id: ids
     })
   end
 
-  def employees_not_by_ids(ids, page=1, per_page=20)
+  def self.employees_not_by_ids(ids, page=1, per_page=20)
     load_employees(page,per_page).where.not(employees: {
         id: ids
     })
   end
 
-  def employees_by_area(area, page=1, per_page=20)
+  def self.employees_by_area(area, page=1, per_page=20)
     load_employees(page, per_page).where(employees:{
         area_id: area
     })
   end
 
-  def employees_by_position(position, page=1, per_page=20)
+  def self.employees_by_position(position, page=1, per_page=20)
     load_employees(page, per_page).where(employees:{
         position_id: position
     })
