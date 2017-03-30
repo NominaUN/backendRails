@@ -16,7 +16,7 @@ class Employee < ActiveRecord::Base
   has_many :payday_details
   has_many :vacations
   
-  validates_inclusion_of :document_type, in: %w( cc ce nit)
+  validates_inclusion_of :document_type, in: %w( C.C. CE. NIT.)
 
   default_scope {order("employees.last_name ASC")}
 
