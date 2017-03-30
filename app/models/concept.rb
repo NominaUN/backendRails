@@ -24,6 +24,7 @@ class Concept < ApplicationRecord
     load_concepts(page,per_page).where.not(concepts: {
       id: ids
     })
+  end
 
   def concepts_by_category(category, page=1, per_page=20)
     load_concepts(page,per_page).where(concepts: {
