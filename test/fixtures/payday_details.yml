@@ -1,27 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  base_value: 9.99
-  win: 9.99
-  loss: 9.99
-  appropiation: 9.99
-  worked_days: 1
-  initial_date: 2017-03-22
-  final_date: 2017-03-22
-  concept: one
-  employee: one
-  novelty: one
-  payday_master: one
-
-two:
-  base_value: 9.99
-  win: 9.99
-  loss: 9.99
-  appropiation: 9.99
-  worked_days: 1
-  initial_date: 2017-03-22
-  final_date: 2017-03-22
-  concept: two
-  employee: two
-  novelty: two
-  payday_master: two
+#one:
+#  base_value: 9.99
+#  win: 9.99
+#  loss: 9.99
+#  appropiation: 9.99
+#  worked_days: 1
+#  initial_date: 2017-03-22
+#  final_date: 2017-03-22
+#  concept: one
+#  employee: one
+#  novelty: one
+#  payday_master: one

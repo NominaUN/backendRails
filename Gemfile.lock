@@ -40,6 +40,7 @@ GEM
       tzinfo (~> 1.1)
     arel (7.1.4)
     builder (3.2.3)
+    byebug (9.0.6)
     concurrent-ruby (1.0.5)
     erubis (2.7.0)
     globalid (0.3.7)
@@ -56,10 +57,13 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     nio4r (2.0.0)
+    nokogiri (1.7.1)
+      mini_portile2 (~> 2.1.0)
     nokogiri (1.7.1-x64-mingw32)
       mini_portile2 (~> 2.1.0)
     nokogiri (1.7.1-x86-mingw32)
       mini_portile2 (~> 2.1.0)
+    pg (0.20.0)
     pg (0.20.0-x64-mingw32)
     pg (0.20.0-x86-mingw32)
     puma (3.8.2)
@@ -106,8 +110,10 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    will_paginate (3.1.5)
 
 PLATFORMS
+  ruby
   x64-mingw32
   x86-mingw32
 
@@ -117,6 +123,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.2)
   tzinfo-data
+  will_paginate (~> 3.1.0)
 
 BUNDLED WITH
    1.14.5
