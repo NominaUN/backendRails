@@ -2,7 +2,7 @@ class Concept < ApplicationRecord
   validates :concept_name, :category, presence: true
   has_many :payday_details
 
-  default_scope {orfer("concepts.concept_name ASC")}
+  default_scope {order("concepts.concept_name ASC")}
 
 
   def self.load_concepts(page=1, per_page=20)

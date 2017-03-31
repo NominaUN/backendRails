@@ -4,11 +4,11 @@ class PaydayMaster < ApplicationRecord
   has_many :payday_details
   
   def load_payday_masters(page=1,per_page=20)
-        .paginate(:page => page,:per_page => per_page)
+    paginate(:page => page,:per_page => per_page)
   end
 
   def payday_master_by_id(id)
-    .find_by_id(id)
+    find_by_id(id)
   end
 
   def payday_masters_by_ids(ids, page=1, per_page=20)

@@ -8,7 +8,7 @@ class EmployeeTest < ActiveSupport::TestCase
 		@position = Position.new(name: "Manager")
 		@position.save
 		
-		@employee = Employee.new(position_id: @position.id, area_id: @area.id, document_type: "cc", document_number: 123456, first_name: "Manuel",
+		@employee = Employee.new(position_id: @position.id, area_id: @area.id, document_type: "CC", document_number: 123456, first_name: "Manuel",
 									other_name: "Mauricio", last_name: "Perez", second_surname: "Rodriguez", birthdate: Date.new(1990,11,22), birthplace:"Bogota",
 									address: "Cra 4 # 22", phones: "7334425", email: "maur@hotmail.com", admission_date: Date.new(2017,1,10),
 									retirement_date: Date.new(2017,7,10), salary: 1500000.0, transport_aid: true, integral_salary: false)
@@ -20,12 +20,12 @@ class EmployeeTest < ActiveSupport::TestCase
 	assert @employee.valid?, "The record: #{@employee.attributes} \n should be ok \n The errors in employee are: #{@employee.errors.messages}"
 	end
 
-	test "should be saved as lowercase the document_type" do
-		d_t = "CC"
+	test "should be saved as uppercase the document_type" do
+		d_t = "cc"
 		@employee.document_type=d_t
 		@employee.save
 		Rails::logger.debug "Errors in employee: #{@employee.errors.messages}"
-		assert_equal d_t.downcase, @employee.reload.document_type
+		assert_equal d_t.upcase, @employee.reload.document_type
 	end
 
 	test "should not validate employee with document_number equal to zero" do

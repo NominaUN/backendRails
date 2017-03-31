@@ -1,6 +1,6 @@
 class Fond < ApplicationRecord
-	before_validation {self.document_type.downcase!}
-	validates_inclusion_of :document_type, in: %w( cc ce nit)
+	before_validation {self.document_type.upcase!}
+	validates_inclusion_of :document_type, in: %w( CC CE NIT)
 
 	validates :document_number, :numericality => { :greater_than => 0 }
 	validates :document_type, presence: true
@@ -32,8 +32,8 @@ class Fond < ApplicationRecord
 				})
 	end
 
-	def self.posts_by_not_ids(ids,page = 1, per_page = 10)
-		load_posts(page,per_page)
+	def self.fonds_by_not_ids(ids,page = 1, per_page = 10)
+		load_fonds(page,per_page)
 				.where.not(fonds:{
 				id: ids
 		})

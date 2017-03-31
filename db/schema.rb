@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324105242) do
+ActiveRecord::Schema.define(version: 20170331012108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,20 +72,41 @@ ActiveRecord::Schema.define(version: 20170324105242) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "logs", force: :cascade do |t|
+    t.datetime "log_time"
+    t.integer  "user_id"
+    t.integer  "option_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["option_id"], name: "index_logs_on_option_id", using: :btree
+    t.index ["user_id"], name: "index_logs_on_user_id", using: :btree
+  end
+
   create_table "novelties", force: :cascade do |t|
-    t.string   "novelty_type",  null: false
-    t.string   "category",      null: false
-    t.decimal  "novelty_value", null: false
-    t.integer  "period",        null: false
-    t.integer  "applied",       null: false
-    t.string   "description",   null: false
+    t.string   "novelty_type",      null: false
+    t.string   "category",          null: false
+    t.decimal  "novelty_value",     null: false
+    t.integer  "period",            null: false
+    t.integer  "applied",           null: false
+    t.string   "description",       null: false
     t.decimal  "percentage1"
     t.decimal  "percentage2"
     t.decimal  "percentage3"
     t.integer  "employee_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "payday_details_id"
+    t.index ["employee_id"], name: "index_novelties_on_employee_id", using: :btree
+    t.index ["payday_details_id"], name: "index_novelties_on_payday_details_id", using: :btree
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.string   "action"
+    t.boolean  "insert_action"
+    t.boolean  "update_action"
+    t.boolean  "delete_action"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.index ["employee_id"], name: "index_novelties_on_employee_id", using: :btree
   end
 
   create_table "payday_details", force: :cascade do |t|
@@ -98,13 +119,11 @@ ActiveRecord::Schema.define(version: 20170324105242) do
     t.date     "final_date",       null: false
     t.integer  "concept_id"
     t.integer  "employee_id"
-    t.integer  "novelty_id"
     t.integer  "payday_master_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.index ["concept_id"], name: "index_payday_details_on_concept_id", using: :btree
     t.index ["employee_id"], name: "index_payday_details_on_employee_id", using: :btree
-    t.index ["novelty_id"], name: "index_payday_details_on_novelty_id", using: :btree
     t.index ["payday_master_id"], name: "index_payday_details_on_payday_master_id", using: :btree
   end
 
@@ -120,6 +139,16 @@ ActiveRecord::Schema.define(version: 20170324105242) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.string   "password"
+    t.string   "role"
+    t.integer  "employee_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["employee_id"], name: "index_users_on_employee_id", using: :btree
   end
 
   create_table "vacations", force: :cascade do |t|
@@ -139,11 +168,14 @@ ActiveRecord::Schema.define(version: 20170324105242) do
   add_foreign_key "employees", "positions"
   add_foreign_key "fond_employees", "employees"
   add_foreign_key "fond_employees", "fonds"
+  add_foreign_key "logs", "options"
+  add_foreign_key "logs", "users"
   add_foreign_key "novelties", "employees"
+  add_foreign_key "novelties", "payday_details", column: "payday_details_id"
   add_foreign_key "payday_details", "concepts"
   add_foreign_key "payday_details", "employees"
-  add_foreign_key "payday_details", "novelties"
   add_foreign_key "payday_details", "payday_masters"
+  add_foreign_key "users", "employees"
   add_foreign_key "vacations", "employees"
   add_foreign_key "vacations", "payday_masters"
 end
