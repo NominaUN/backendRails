@@ -4,7 +4,7 @@ class PaydayDetail < ApplicationRecord
   belongs_to :payday_master
   validates :base_value, :worked_days, :initial_date, :final_date, presence: true
   
-  default_scope {order("payday_masters.employee ASC")}
+  #default_scope {order("payday_masters.employee ASC")}
 
   def load_payday_details(page=1,per_page=20)
     includes(:concepts, :employees, :payday_masters)
