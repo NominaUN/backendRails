@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  novelty_type: MyString
+  novelty_value: 
+  category: MyString
+  period: 1
+  applied: 1
+  description: MyString
+  percentage1: 
+  percentage2: 
+  percentage3: 
+  employee: one
+  payday_detail: one
+
+two:
+  novelty_type: MyString
+  novelty_value: 
+  category: MyString
+  period: 1
+  applied: 1
+  description: MyString
+  percentage1: 
+  percentage2: 
+  percentage3: 
+  employee: two
+  payday_detail: two
