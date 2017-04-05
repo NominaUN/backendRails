@@ -22,21 +22,21 @@ class Vacation < ApplicationRecord
   end
 
   def self.vacations_by_not_ids(ids,page = 1, per_page = 20)
-    load_posts(page,per_page)
+    load_vacations(page,per_page)
         .where.not(vacations:{
         id: ids
     })
   end
 
-  def vacations_by_user(user, page=1, per_page=20)
-    joins(:users).select("vacations.*").group_by("vacations.id").where(users:{
-        id: user
-    }).paginate(:page => page, :per_page => per_page)
+  def self.vacations_by_employee(employee, page=1, per_page=20)
+    load_vacations(page,per_page).where(vacations: {
+      employee_id: employee
+    })
   end
 
-  def vacations_by_payday_master(payday_master, page=1, per_page=20)
-    joins(:payday_masters).select("vacations.*").group_by("vacations.id").where(payday_masters:{
-        id: payday_master
-    }).paginate(:page => page, :per_page => per_page)
+  def self.vacations_by_payday_master(payday_master, page=1, per_page=20)
+    load_vacations(page,per_page).where(vacations: {
+      payday_master_id: payday_master
+    })
   end
 end

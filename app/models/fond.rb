@@ -30,16 +30,15 @@ class Fond < ApplicationRecord
 				})
 	end
 
-	def self.fonds_by_not_ids(ids,page = 1, per_page = 10)
+	def self.fonds_not_by_ids(ids,page = 1, per_page = 10)
 		load_fonds(page,per_page)
 				.where.not(fonds:{
 				id: ids
 		})
 	end
 
-
 	def self.fonds_by_employee(employee, page=1, per_page=20 )
-		joins(fond_employees: :employees).where(fond_employees:{
+		joins(:employees).where(fond_employees:{
 			employee_id: employee
 		}).paginate(:page => page,:per_page => per_page)
 	end

@@ -19,7 +19,7 @@ class Novelty < ApplicationRecord
     })
   end
 
-  def self.novelties_by_ids(ids, page=1, per_page=20)
+  def self.novelties_not_by_ids(ids, page=1, per_page=20)
     load_novelties(page,per_page).where.not(novelties: {
       id: ids
     })
