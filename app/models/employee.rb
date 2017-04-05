@@ -19,7 +19,7 @@ class Employee < ActiveRecord::Base
   default_scope {order("employees.last_name ASC")}
 
   def self.load_employees(page=1,per_page=20)
-    includes(:fonds, :payday_details, vacations: [:novelties])
+    includes(:fonds, :payday_details, :vacations)
         .paginate(:page => page,:per_page => per_page)
   end
 
