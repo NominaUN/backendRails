@@ -5,15 +5,14 @@ class PaydayDetail < ApplicationRecord
 
   validates :base_value, :worked_days, :start_date, :end_date, presence: true
   
-  #default_scope {order("payday_masters.employee ASC")}
+  default_scope {order("payday_details.start_date ASC")}
 
   def self.load_payday_details(page=1,per_page=20)
-    includes(:concepts, :employees, :payday_masters)
-        .paginate(:page => page,:per_page => per_page)
+    paginate(:page => page,:per_page => per_page)
   end
 
   def self.payday_detail_by_id(id)
-    includes(:concepts, :employees, :payday_masters).find_by_id(id)
+    find_by_id(id)
   end
 
   def self.payday_details_by_ids(ids, page=1, per_page=20)
@@ -40,7 +39,7 @@ class PaydayDetail < ApplicationRecord
     })
   end
    
-  def payday_details_by_payday_master(payday_master, page=1, per_page=20)
+  def self.payday_details_by_payday_master(payday_master, page=1, per_page=20)
     load_payday_details(page, per_page).where(payday_details:{
         payday_master_id: payday_master
     })

@@ -14,19 +14,17 @@ class Fond < ApplicationRecord
 	default_scope {order("fonds.business_name ASC")}
 
 	def self.load_fonds(page=1,per_page=20)
-		includes(fond_employees: :employees)
+		includes(:employees)
 				.paginate(:page => page,:per_page => per_page)
 	end
-	##queries
-	#
 
 	def self.fond_by_id(id)
-		includes(fond_employees: :employees)
+		includes(:employees)
 				.find_by_id(id)
 	end
 
 	def self.fonds_by_ids(ids,page = 1, per_page = 10)
-		load_posts(page,per_page)
+		load_fonds(page,per_page)
 				.where(fonds:{
 						id: ids
 				})

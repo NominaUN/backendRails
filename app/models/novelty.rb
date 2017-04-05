@@ -1,16 +1,16 @@
 class Novelty < ApplicationRecord
   belongs_to :employee
   belongs_to :payday_detail
+  validates :novelty_value, :numericality => { :greater_than => 0 }
   validates :novelty_type, :category, :novelty_value, :period, :description, presence: true
   default_scope {order("novelties.novelty_type ASC")}
 
   def self.load_novelties(page=1, per_page=20)
-    includes(:employee, :payday_detail)
-      .paginate(:page => page, :per_page => per_page)
+      paginate(:page => page, :per_page => per_page)
   end
 
   def self.novelty_by_id(id)
-    includes(:employee, :payday_detail).find_by_id(id)
+    find_by_id(id)
   end
 
   def self.novelties_by_ids(ids, page=1, per_page=20)

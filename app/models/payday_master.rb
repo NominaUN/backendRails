@@ -3,6 +3,8 @@ class PaydayMaster < ApplicationRecord
   has_many :vacations
   has_many :payday_details
   
+  default_scope {order("payday_masters.payday_date ASC")}
+  
   def self.load_payday_masters(page=1,per_page=20)
     paginate(:page => page,:per_page => per_page)
   end

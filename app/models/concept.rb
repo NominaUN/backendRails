@@ -4,7 +4,6 @@ class Concept < ApplicationRecord
 
   default_scope {order("concepts.concept_name ASC")}
 
-
   def self.load_concepts(page=1, per_page=20)
     includes(:payday_details)
       .paginate(:page => page, :per_page => per_page)

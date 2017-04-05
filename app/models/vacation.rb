@@ -2,18 +2,16 @@ class Vacation < ApplicationRecord
   belongs_to :employee
   belongs_to :payday_master
   validates :paid_days, :taken_days, :start_date, :end_date, presence: true
-  validates :paid_days, :taken_days, :numericality =>  {greater_than_or_equal_to: 0}
+  validates :paid_days, :taken_days, :numericality =>  {:greater_than => 0}
 
   default_scope {order("vacations.start_date ASC")}
 
-  def load_vacations(page=1,per_page=20)
-    includes(:employees, :payday_master)
-        .paginate(:page => page,:per_page => per_page)
+  def self.load_vacations(page=1,per_page=20)
+    paginate(:page => page,:per_page => per_page)
   end
 
   def self.vacation_by_id(id)
-    includes(:employees, :payday_master)
-        .find_by_id(id)
+    find_by_id(id)
   end
 
   def self.vacations_by_ids(ids,page = 1, per_page = 20)
@@ -36,7 +34,7 @@ class Vacation < ApplicationRecord
     }).paginate(:page => page, :per_page => per_page)
   end
 
-  def vacations_by_payday_master(paydyay_master, page=1, per_page=20)
+  def vacations_by_payday_master(payday_master, page=1, per_page=20)
     joins(:payday_masters).select("vacations.*").group_by("vacations.id").where(payday_masters:{
         id: payday_master
     }).paginate(:page => page, :per_page => per_page)
