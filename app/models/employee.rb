@@ -1,9 +1,7 @@
 class Employee < ActiveRecord::Base
-  #Make sure that the data is converted downcase in the database to just check for cc ce and nit in the validation process
   before_validation {self.document_type.upcase!}
   before_save {email.downcase!}
   validates :document_number, :numericality => { :greater_than => 0 }
-  #Regular expression for emails
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :document_type, :document_number, :birthdate, :first_name, :admission_date, :area_id, :birthplace, presence: true
   validates  :last_name, :phones, :position_id, :salary, :address, presence: true

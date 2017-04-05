@@ -1,34 +1,39 @@
 class Novelty < ApplicationRecord
   belongs_to :employee
+  belongs_to :payday_detail
   validates :novelty_type, :category, :novelty_value, :period, :description, presence: true
-  has_many :payday_details
-  default_scope {order("novelities.novelity_type ASC")}
-
+  default_scope {order("novelties.novelty_type ASC")}
 
   def self.load_novelties(page=1, per_page=20)
-    includes(:employee, :payday_details)
+    includes(:employee, :payday_detail)
       .paginate(:page => page, :per_page => per_page)
   end
 
   def self.novelty_by_id(id)
-    includes(:employee, :payday_details).find_by_id(id)
+    includes(:employee, :payday_detail).find_by_id(id)
   end
 
-  def self.novelities_by_ids(ids, page=1, per_page=20)
-    load_novelties(page, per_page).where(novelities:{
+  def self.novelties_by_ids(ids, page=1, per_page=20)
+    load_novelties(page, per_page).where(novelties:{
       id: ids
     })
   end
 
-  def self.novelities_by_ids(ids, page=1, per_page=20)
-    load_novelties(page,per_page).where.not(novelities: {
+  def self.novelties_by_ids(ids, page=1, per_page=20)
+    load_novelties(page,per_page).where.not(novelties: {
       id: ids
     })
   end
 
-  def self.novelities_by_employee(employee, page=1, per_page=20)
-    load_novelties(page,per_page).where(novelities: {
-      emplotee_id: employee
+  def self.novelties_by_employee(employee, page=1, per_page=20)
+    load_novelties(page,per_page).where(novelties: {
+      employee_id: employee
+    })
+  end
+  
+  def self.novelties_by_payday_detail(payday_detail, page=1, per_page=20)
+    load_novelties(page,per_page).where(novelties: {
+      payday_detail_id: payday_detail
     })
   end
 end

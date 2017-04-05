@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170331012108) do
+ActiveRecord::Schema.define(version: 20170404215219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,15 @@ ActiveRecord::Schema.define(version: 20170331012108) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "general_parameters", force: :cascade do |t|
+    t.integer  "round_type"
+    t.integer  "laboral_days"
+    t.string   "payday"
+    t.decimal  "integral_base"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "logs", force: :cascade do |t|
     t.datetime "log_time"
     t.integer  "user_id"
@@ -83,21 +92,21 @@ ActiveRecord::Schema.define(version: 20170331012108) do
   end
 
   create_table "novelties", force: :cascade do |t|
-    t.string   "novelty_type",      null: false
-    t.string   "category",          null: false
-    t.decimal  "novelty_value",     null: false
-    t.integer  "period",            null: false
-    t.integer  "applied",           null: false
-    t.string   "description",       null: false
+    t.string   "novelty_type",     null: false
+    t.decimal  "novelty_value",    null: false
+    t.string   "category",         null: false
+    t.integer  "period",           null: false
+    t.integer  "applied",          null: false
+    t.string   "description",      null: false
     t.decimal  "percentage1"
     t.decimal  "percentage2"
     t.decimal  "percentage3"
     t.integer  "employee_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "payday_details_id"
+    t.integer  "payday_detail_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.index ["employee_id"], name: "index_novelties_on_employee_id", using: :btree
-    t.index ["payday_details_id"], name: "index_novelties_on_payday_details_id", using: :btree
+    t.index ["payday_detail_id"], name: "index_novelties_on_payday_detail_id", using: :btree
   end
 
   create_table "options", force: :cascade do |t|
@@ -114,9 +123,9 @@ ActiveRecord::Schema.define(version: 20170331012108) do
     t.decimal  "win",              null: false
     t.decimal  "loss",             null: false
     t.decimal  "appropiation",     null: false
-    t.integer  "worked_days",      null: false
-    t.date     "initial_date",     null: false
-    t.date     "final_date",       null: false
+    t.decimal  "worked_days",      null: false
+    t.date     "start_date",       null: false
+    t.date     "end_date",         null: false
     t.integer  "concept_id"
     t.integer  "employee_id"
     t.integer  "payday_master_id"
@@ -171,7 +180,7 @@ ActiveRecord::Schema.define(version: 20170331012108) do
   add_foreign_key "logs", "options"
   add_foreign_key "logs", "users"
   add_foreign_key "novelties", "employees"
-  add_foreign_key "novelties", "payday_details", column: "payday_details_id"
+  add_foreign_key "novelties", "payday_details"
   add_foreign_key "payday_details", "concepts"
   add_foreign_key "payday_details", "employees"
   add_foreign_key "payday_details", "payday_masters"
