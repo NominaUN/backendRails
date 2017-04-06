@@ -13,17 +13,18 @@ class Fond < ApplicationRecord
 
 	default_scope {order("fonds.business_name ASC")}
 
-	def self.load_fonds(page=1,per_page=20)
+	def self.load_fonds(page=1, per_page=20)
 		includes(:employees)
 				.paginate(:page => page,:per_page => per_page)
 	end
 
-	def self.fond_by_id(id)
+	def self.fond_by_id(id, page=1,per_page=20)
 		includes(:employees)
 				.find_by_id(id)
+				.paginate(:page => page,:per_page => per_page)
 	end
 
-	def self.fonds_by_ids(ids,page = 1, per_page = 10)
+	def self.fonds_by_ids(ids, page = 1, per_page = 10)
 		load_fonds(page,per_page)
 				.where(fonds:{
 						id: ids
@@ -43,8 +44,21 @@ class Fond < ApplicationRecord
 		}).paginate(:page => page,:per_page => per_page)
 	end
 	##fonds by categories
-
+	def self.fond_by_type(category, page=1, per_page=20)
+		load_fonds(page,per_page).where(fonds:{
+			type_of_fond: category
+		})	
+	end
 	##fond by razon social
-
+	def self.fond_by_name(name, page=1, per_page=20)
+		load_fonds(page,per_page).where(fonds:{
+			business_name: name	
+		})	
+	end
 	##fond by id_document
+	def self.fond_by_document_number(number, page=1, per_page=20)
+		load_fonds(page,per_page).where(fonds:{
+			document_number: number	
+		})	
+	end
 end
