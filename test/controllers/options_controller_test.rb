@@ -2,7 +2,7 @@ require 'test_helper'
 
 class OptionsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @option = Option.option_by_id(1)
+    @option = options(:one)
   end
 
   test "should get index" do
@@ -12,7 +12,7 @@ class OptionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create option" do
     assert_difference('Option.count') do
-      post options_url, params: { option: {action: "Liquidar prima", insert_action: true, update_action: true, delete_action: true} }, as: :json
+      post options_url, params: { option: {  } }, as: :json
     end
 
     assert_response 201
@@ -24,12 +24,11 @@ class OptionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update option" do
-    patch option_url(@option), params: { option: {action: "Liquidar primas", insert_action: true, update_action: true, delete_action: false} }, as: :json
+    patch option_url(@option), params: { option: {  } }, as: :json
     assert_response 200
   end
 
   test "should destroy option" do
-	skip("make debugging to figure why is not deleting")
     assert_difference('Option.count', -1) do
       delete option_url(@option), as: :json
     end
