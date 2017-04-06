@@ -2,7 +2,7 @@ require 'test_helper'
 
 class VacationsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @vacation = vacations(:one)
+    @vacation = Vacation.vacation_by_id(1)
   end
 
   test "should get index" do

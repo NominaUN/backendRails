@@ -2,7 +2,8 @@ require 'test_helper'
 
 class PositionsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @position = positions(:one)
+    @position = Position.new(name: "Contador")
+	@position.save
   end
 
   test "should get index" do
