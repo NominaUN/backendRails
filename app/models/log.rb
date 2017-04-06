@@ -2,6 +2,8 @@ class Log < ApplicationRecord
   belongs_to :user
   belongs_to :option
   
+  validates date_time, presence: true
+  
   default_scope {order("logs.log_time ASC")}
 
   def self.load_logs(page=1, per_page=20)
