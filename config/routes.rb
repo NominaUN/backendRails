@@ -6,4 +6,9 @@ Rails.application.routes.draw do
   resources :general_parameters
   resources :payday_details
   resources :payday_masters
+  
+  resources :areas
+  resources :positions
+  resources :employees
+  resources :vacations
 end
