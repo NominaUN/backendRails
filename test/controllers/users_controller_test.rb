@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class UserControllerTest < ActionDispatch::IntegrationTest
+class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = User.user_by_id(1)
+    @user = users(:one)
   end
 
   test "should get index" do
@@ -28,8 +28,7 @@ class UserControllerTest < ActionDispatch::IntegrationTest
     assert_response 200
   end
 
-  test "should destroy option" do
-	skip("make debugging to figure why is not deleting")
+  test "should destroy user" do
     assert_difference('User.count', -1) do
       delete user_url(@user), as: :json
     end

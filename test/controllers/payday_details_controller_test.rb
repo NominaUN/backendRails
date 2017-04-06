@@ -1,12 +1,12 @@
 require 'test_helper'
 
-class PaydayDetailControllerTest < ActionDispatch::IntegrationTest
+class PaydayDetailsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @payday_detail = PaydayDetail.payday_detail_by_id(1)
+    @payday_detail = payday_details(:one)
   end
 
   test "should get index" do
-    get employees_url, as: :json
+    get payday_details_url, as: :json
     assert_response :success
   end
 
@@ -29,7 +29,6 @@ class PaydayDetailControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy payday_detail" do
-	skip("make debugging to figure why is not deleting")
     assert_difference('PaydayDetail.count', -1) do
       delete payday_detail_url(@payday_detail), as: :json
     end

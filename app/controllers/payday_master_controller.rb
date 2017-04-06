@@ -1,2 +1,0 @@
-class PaydayMasterController < ApplicationController
-end
