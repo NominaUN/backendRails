@@ -11,4 +11,9 @@ Rails.application.routes.draw do
   resources :positions
   resources :employees
   resources :vacations
+  
+  resources :fonds
+  resources :fond_employees
+  resources :novelities
+  resources :concepts
 end
