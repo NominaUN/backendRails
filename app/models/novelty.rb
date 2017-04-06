@@ -1,7 +1,7 @@
 class Novelty < ApplicationRecord
   belongs_to :employee
   belongs_to :payday_detail
-  validates :novelty_value, :numericality => { :greater_than => 0 }
+  validates :novelty_value, :numericality => { :greater_than_or_equal_to => 0 }
   validates :novelty_type, :category, :novelty_value, :period, :description, presence: true
   default_scope {order("novelties.novelty_type ASC")}
 
