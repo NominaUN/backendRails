@@ -1,0 +1,2 @@
+class PaydayDetailController < ApplicationController
+end
