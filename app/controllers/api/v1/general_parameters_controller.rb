@@ -1,4 +1,4 @@
-class GeneralParametersController < ApplicationController
+class Api::V1::GeneralParametersController < ApplicationController
   before_action :set_general_parameter, only: [:show, :update, :destroy]
 
   # GET /general_parameters

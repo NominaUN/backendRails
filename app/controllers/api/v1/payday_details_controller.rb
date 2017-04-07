@@ -1,4 +1,4 @@
-class PaydayDetailsController < ApplicationController
+class Api::V1::PaydayDetailsController < ApplicationController
   before_action :set_payday_detail, only: [:show, :update, :destroy]
 
   # GET /payday_details

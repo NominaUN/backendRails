@@ -1,4 +1,4 @@
-class FondsController < ApplicationController
+class Api::V1::FondsController < ApplicationController
   before_action :set_fond, only: [:show, :update, :destroy]
 
   # GET /fonds

@@ -1,4 +1,4 @@
-class FondEmployeesController < ApplicationController
+class Api::V1::FondEmployeesController < ApplicationController
   before_action :set_fond_employee, only: [:show, :update, :destroy]
 
   # GET /fond_employees

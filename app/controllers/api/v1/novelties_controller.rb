@@ -1,4 +1,4 @@
-class NoveltiesController < ApplicationController
+class Api::V1::NoveltiesController < ApplicationController
   before_action :set_novelty, only: [:show, :update, :destroy]
 
   # GET /novelties

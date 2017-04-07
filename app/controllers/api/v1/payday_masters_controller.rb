@@ -1,4 +1,4 @@
-class PaydayMastersController < ApplicationController
+class Api::V1::PaydayMastersController < ApplicationController
   before_action :set_payday_master, only: [:show, :update, :destroy]
 
   # GET /payday_masters

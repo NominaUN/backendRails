@@ -1,4 +1,4 @@
-class ConceptsController < ApplicationController
+class Api::V1::ConceptsController < ApplicationController
   before_action :set_concept, only: [:show, :update, :destroy]
 
   # GET /concepts

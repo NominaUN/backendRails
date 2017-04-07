@@ -1,4 +1,4 @@
-class LogsController < ApplicationController
+class Api::V1::LogsController < ApplicationController
   before_action :set_log, only: [:show, :update, :destroy]
 
   # GET /logs

@@ -1,4 +1,4 @@
-class VacationsController < ApplicationController
+class Api::V1::VacationsController < ApplicationController
   before_action :set_vacation, only: [:show, :update, :destroy]
 
   # GET /vacations
