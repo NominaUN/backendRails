@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   
   resources :fonds
   resources :fond_employees
-  resources :novelities
+  resources :novelties
   resources :concepts
 end
