@@ -2,7 +2,7 @@ class Log < ApplicationRecord
   belongs_to :user
   belongs_to :option
   
-  validates date_time, presence: true
+  validates :log_time, presence: true
   
   default_scope {order("logs.log_time ASC")}
 
