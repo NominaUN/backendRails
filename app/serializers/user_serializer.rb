@@ -3,4 +3,5 @@ class UserSerializer < ActiveModel::Serializer
   
   belongs_to :employee
   has_many :logs
+  has_many :options, through: :logs  
 end
