@@ -3,14 +3,14 @@ class Api::V1::ConceptsController < ApplicationController
 
   # GET /concepts
   def index
-    @concepts = Concept.all
+    @concepts = Concept.load_concepts( params[:page], params[:per_page])
 
-    render json: @concepts
+    render json: @concepts, root: "data"
   end
 
   # GET /concepts/1
   def show
-    render json: @concept
+    render json: @concept, root: "data"
   end
 
   # POST /concepts
@@ -18,18 +18,18 @@ class Api::V1::ConceptsController < ApplicationController
     @concept = Concept.new(concept_params)
 
     if @concept.save
-      render json: @concept, status: :created, location: @concept
+      render json: @concept, status: :created, location: @concept, root: "data"
     else
-      render json: @concept.errors, status: :unprocessable_entity
+      render json: @concept.errors, status: :unprocessable_entity, root: "data"
     end
   end
 
   # PATCH/PUT /concepts/1
   def update
     if @concept.update(concept_params)
-      render json: @concept
+      render json: @concept, root: "data"
     else
-      render json: @concept.errors, status: :unprocessable_entity
+      render json: @concept.errors, status: :unprocessable_entity, root: "data"
     end
   end
 
@@ -41,11 +41,11 @@ class Api::V1::ConceptsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_concept
-      @concept = Concept.find(params[:id])
+      @concept = Concept.concept_by_id(params[:id], params[:page], params[:per_page])
     end
 
     # Only allow a trusted parameter "white list" through.
     def concept_params
-      params.fetch(:concept, {})
+      params.fetch(:concept, :page, :per_page, {})
     end
 end
