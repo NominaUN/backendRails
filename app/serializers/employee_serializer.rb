@@ -5,9 +5,10 @@ class EmployeeSerializer < ActiveModel::Serializer
     belongs_to :area
     belongs_to :position
     
-      has_many :fonds
-      has_many :payday_details
-      has_many :vacations
-      has_many :novelties   
-  
+    has_many :fond_employees
+    has_many :fonds, through: :fond_employees
+    has_many :payday_details
+    has_many :vacations
+    has_many :novelties
+    has_many :users    
 end
