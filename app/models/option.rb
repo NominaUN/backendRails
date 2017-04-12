@@ -1,6 +1,6 @@
 class Option < ApplicationRecord
   
-  validates :action, :insert_action, :update_action, :delete_action, presence: true
+  validates :action,  presence: true
 
   has_many :logs
   has_many :users, through: :logs  

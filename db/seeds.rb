@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Area.create!([{name: 'Administrativo'},{name: 'Investigación y Desarrollo'},{name: 'Atención al Cliente'},{name: 'Comercial'}])
+Area.create!([{name_area: 'Administrativo'},{name_area: 'Investigación y Desarrollo'},{name_area: 'Atención al Cliente'},{name_area: 'Comercial'}])
 Position.create!([{name: 'Gerente General'},{name: 'Director de I+D'},{name: 'Director de Atención al Cliente'},{name: 'Gerente Comercial'}])
 Concept.create!([{concept_name: 'Salario', category: 'Devengado'},{concept_name: 'Auxilio de Transporte', category: 'Devengado'},
 	{concept_name: 'Salud', category: 'Deducido'},{concept_name: 'Pensión', category: 'Deducido'},{concept_name: 'Vacaciones', category: 'Provisión'},
