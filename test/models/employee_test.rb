@@ -1,5 +1,5 @@
 require 'test_helper'
-
+include FactoryGirl::Syntax::Methods
 class EmployeeTest < ActiveSupport::TestCase
 
 	def setup
@@ -13,6 +13,8 @@ class EmployeeTest < ActiveSupport::TestCase
 									address: "Cra 4 # 22", phones: "7334425", email: "maur@hotmail.com", admission_date: Date.new(2017,1,10),
 									retirement_date: Date.new(2017,7,10), salary: 1500000.0, transport_aid: true, integral_salary: false)
 		@employee.valid?
+
+
 		Rails::logger.debug "Errors in employee: #{@employee.errors.messages}"
 	end
 
@@ -37,5 +39,10 @@ class EmployeeTest < ActiveSupport::TestCase
 		@employee.email="CAMILO@gmail.com"
 		@employee.save
 		assert_equal @employee.email.downcase, @employee.reload.email, "Error en email lower: #{@employee.errors.messages}"
+	end
+
+	test "Should be saved the record created with Factory" do
+		@employee2 = FactoryGirl.create(:employee)
+		assert @employee2.saved?, "No se pudo guardar objeto: #{@employee2} creado con factory"
 	end
 end

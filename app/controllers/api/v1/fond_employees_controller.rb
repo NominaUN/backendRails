@@ -3,7 +3,7 @@ class Api::V1::FondEmployeesController < ApplicationController
 
   # GET /fond_employees
   def index
-    @fond_employees = FondEmployee.all
+    @fond_employees = FondEmployee.load_fonds_employees
 
     render json: @fond_employees
   end

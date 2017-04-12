@@ -3,7 +3,7 @@ class Api::V1::AreasController < ApplicationController
 
   # GET /areas
   def index
-    @areas = Area.all
+    @areas = Area.load_areas
 
     render json: @areas
   end

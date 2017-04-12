@@ -20,6 +20,8 @@ class Employee < ActiveRecord::Base
 
   default_scope {order("employees.last_name ASC")}
 
+  scope :document_type, -> (document_type) {where document_type: document_type}
+
   def self.load_employees(page=1,per_page=20)
     includes(:fonds, :payday_details, :vacations, :novelties, :users)
         .paginate(:page => page,:per_page => per_page)
@@ -52,4 +54,6 @@ class Employee < ActiveRecord::Base
         position_id: position
     })
   end
+
+
 end

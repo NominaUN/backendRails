@@ -3,7 +3,7 @@ class Api::V1::FondsController < ApplicationController
 
   # GET /fonds
   def index
-    @fonds = Fond.all
+    @fonds = Fond.load_fonds
 
     render json: @fonds
   end
