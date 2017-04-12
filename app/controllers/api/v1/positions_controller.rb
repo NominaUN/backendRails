@@ -3,7 +3,7 @@ class Api::V1::PositionsController < ApplicationController
 
   # GET /positions
   def index
-    @positions = Position.all
+    @positions = Position.(params[:page], params[:per_page])
 
     render json: @positions
   end

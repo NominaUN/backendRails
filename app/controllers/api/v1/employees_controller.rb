@@ -3,7 +3,7 @@ class Api::V1::EmployeesController < ApplicationController
 
   # GET /employees
   def index
-    @employees = Employee.load_employees
+    @employees = Employee.load_employees(params[:page], params[:per_page])
     filtering_params(params).each do |key, value|
       @employees = @employees.public_send(key, value) if value.present?
       end
