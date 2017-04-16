@@ -1,6 +1,5 @@
 class Employee < ActiveRecord::Base
-  before_validation {uppercase_document_type}
-  before_save {email.downcase!}
+  before_save {email.downcase!, document_type.upcase!}
   validates :document_number, :numericality => { :greater_than => 0 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :document_type, :document_number, :birthdate, :first_name, :admission_date, :area_id, :birthplace, presence: true
@@ -15,14 +14,12 @@ class Employee < ActiveRecord::Base
   has_many :vacations
   has_many :novelties
   has_many :users
-  
-  def uppercase_document_type
-    document_type.upcase!
-  end
-  
+   
   validates_inclusion_of :document_type, in: %w( CC CE NIT)
 
   default_scope {order("employees.last_name ASC")}
+
+  scope :document_type, -> (document_type) {where document_type: document_type}
 
   def self.load_employees(page=1,per_page=20)
     includes(:fonds, :payday_details, :vacations, :novelties, :users)
@@ -56,4 +53,6 @@ class Employee < ActiveRecord::Base
         position_id: position
     })
   end
+
+
 end

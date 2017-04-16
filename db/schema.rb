@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404215219) do
+ActiveRecord::Schema.define(version: 20170412062907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "areas", force: :cascade do |t|
-    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name_area"
   end
 
   create_table "concepts", force: :cascade do |t|
@@ -145,9 +145,9 @@ ActiveRecord::Schema.define(version: 20170404215219) do
   end
 
   create_table "positions", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "name_position"
   end
 
   create_table "users", force: :cascade do |t|

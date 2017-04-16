@@ -2,7 +2,7 @@ require 'test_helper'
 
 class NoveltiesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @novelty = Novelty.novelty_by_id(1)
+    @novelty = novelties(:one)
   end
 
   test "should get index" do

@@ -1,5 +1,5 @@
 require 'test_helper'
-
+include FactoryGirl::Syntax::Methods
 class EmployeesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @employee = employees(:one)

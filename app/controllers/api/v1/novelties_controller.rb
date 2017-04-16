@@ -3,14 +3,14 @@ class Api::V1::NoveltiesController < ApplicationController
 
   # GET /novelties
   def index
-    @novelties = Novelty.all
+    @novelties = Novelty.load_novelties(params[:page], params[:per_page])
 
-    render json: @novelties
+    render json: @novelties, root: "data"
   end
 
   # GET /novelties/1
   def show
-    render json: @novelty
+    render json: @novelty, root: "data"
   end
 
   # POST /novelties
@@ -18,18 +18,18 @@ class Api::V1::NoveltiesController < ApplicationController
     @novelty = Novelty.new(novelty_params)
 
     if @novelty.save
-      render json: @novelty, status: :created, location: @novelty
+      render json: @novelty, status: :created, location: @novelty, root: "data"
     else
-      render json: @novelty.errors, status: :unprocessable_entity
+      render json: @novelty.errors, status: :unprocessable_entity, root: "data"
     end
   end
 
   # PATCH/PUT /novelties/1
   def update
     if @novelty.update(novelty_params)
-      render json: @novelty
+      render json: @novelty, root: "data"
     else
-      render json: @novelty.errors, status: :unprocessable_entity
+      render json: @novelty.errors, status: :unprocessable_entity, root: "data"
     end
   end
 
@@ -41,11 +41,11 @@ class Api::V1::NoveltiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_novelty
-      @novelty = Novelty.find(params[:id])
+      @novelty = Novelty.novelty_by_id(params[:id], params[:page], params[:per_page])
     end
 
     # Only allow a trusted parameter "white list" through.
     def novelty_params
-      params.fetch(:novelty, {})
+      params.fetch(:novelty, :page, :per_page, {})
     end
 end

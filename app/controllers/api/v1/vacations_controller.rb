@@ -3,7 +3,7 @@ class Api::V1::VacationsController < ApplicationController
 
   # GET /vacations
   def index
-    @vacations = Vacation.all
+    @vacations = Vacation.load_vacations(params[:page], params[:per_page])
 
     render json: @vacations
   end

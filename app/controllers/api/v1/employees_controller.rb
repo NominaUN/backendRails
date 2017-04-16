@@ -3,8 +3,10 @@ class Api::V1::EmployeesController < ApplicationController
 
   # GET /employees
   def index
-    @employees = Employee.load_employees
-
+    @employees = Employee.load_employees(params[:page], params[:per_page])
+    filtering_params(params).each do |key, value|
+      @employees = @employees.public_send(key, value) if value.present?
+      end
     render json: @employees
   end
 
@@ -48,4 +50,10 @@ class Api::V1::EmployeesController < ApplicationController
     def employee_params
       params.fetch(:employee, {})
     end
+
+  private
+
+  def filtering_params(params)
+    params.slice(:document_number, :document_type)
+  end
 end
