@@ -3,14 +3,14 @@ class Api::V1::LogsController < ApplicationController
 
   # GET /logs
   def index
-    @logs = Log.all
+    @logs = Log.load_logs(params[:page], params[:per_page])
 
-    render json: @logs
+    render json: @logs, root: "data"
   end
 
   # GET /logs/1
   def show
-    render json: @log
+    render json: @log, root: "data"
   end
 
   # POST /logs
@@ -18,18 +18,18 @@ class Api::V1::LogsController < ApplicationController
     @log = Log.new(log_params)
 
     if @log.save
-      render json: @log, status: :created, location: @log
+      render json: @log, status: :created, location: @log, root: "data"
     else
-      render json: @log.errors, status: :unprocessable_entity
+      render json: @log.errors, status: :unprocessable_entity, root: "data"
     end
   end
 
   # PATCH/PUT /logs/1
   def update
     if @log.update(log_params)
-      render json: @log
+      render json: @log, root: "data"
     else
-      render json: @log.errors, status: :unprocessable_entity
+      render json: @log.errors, status: :unprocessable_entity, root: "data"
     end
   end
 

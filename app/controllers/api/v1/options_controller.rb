@@ -3,14 +3,14 @@ class Api::V1::OptionsController < ApplicationController
 
   # GET /options
   def index
-    @options = Option.all
+    @options = Option.load_options(params[:page], params[:per_page])
 
-    render json: @options
+    render json: @options, root: "data"
   end
 
   # GET /options/1
   def show
-    render json: @option
+    render json: @option, root: "data"
   end
 
   # POST /options
@@ -18,18 +18,18 @@ class Api::V1::OptionsController < ApplicationController
     @option = Option.new(option_params)
 
     if @option.save
-      render json: @option, status: :created, location: @option
+      render json: @option, status: :created, location: @option, root: "data"
     else
-      render json: @option.errors, status: :unprocessable_entity
+      render json: @option.errors, status: :unprocessable_entity, root: "data"
     end
   end
 
   # PATCH/PUT /options/1
   def update
     if @option.update(option_params)
-      render json: @option
+      render json: @option, root: "data"
     else
-      render json: @option.errors, status: :unprocessable_entity
+      render json: @option.errors, status: :unprocessable_entity, root: "data"
     end
   end
 

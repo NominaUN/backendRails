@@ -7,12 +7,12 @@ class Api::V1::EmployeesController < ApplicationController
     filtering_params(params).each do |key, value|
       @employees = @employees.public_send(key, value) if value.present?
       end
-    render json: @employees
+    render json: @employees, root: "data" 
   end
 
   # GET /employees/1
   def show
-    render json: @employee
+    render json: @employee, root: "data"
   end
 
   # POST /employees
@@ -20,18 +20,18 @@ class Api::V1::EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
 
     if @employee.save
-      render json: @employee, status: :created, location: @employee
+      render json: @employee, status: :created, location: @employee, root: "data"
     else
-      render json: @employee.errors, status: :unprocessable_entity
+      render json: @employee.errors, status: :unprocessable_entity, root: "data"
     end
   end
 
   # PATCH/PUT /employees/1
   def update
     if @employee.update(employee_params)
-      render json: @employee
+      render json: @employee, root: "data"
     else
-      render json: @employee.errors, status: :unprocessable_entity
+      render json: @employee.errors, status: :unprocessable_entity, root: "data"
     end
   end
 

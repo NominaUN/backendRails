@@ -3,14 +3,14 @@ class Api::V1::GeneralParametersController < ApplicationController
 
   # GET /general_parameters
   def index
-    @general_parameters = GeneralParameter.all
+    @general_parameters = GeneralParameter.load_general_parameters(params[:page], params[:per_page])
 
-    render json: @general_parameters
+    render json: @general_parameters, root: "data"
   end
 
   # GET /general_parameters/1
   def show
-    render json: @general_parameter
+    render json: @general_parameter, root: "data"
   end
 
   # POST /general_parameters
@@ -18,18 +18,18 @@ class Api::V1::GeneralParametersController < ApplicationController
     @general_parameter = GeneralParameter.new(general_parameter_params)
 
     if @general_parameter.save
-      render json: @general_parameter, status: :created, location: @general_parameter
+      render json: @general_parameter, status: :created, location: @general_parameter, root: "data"
     else
-      render json: @general_parameter.errors, status: :unprocessable_entity
+      render json: @general_parameter.errors, status: :unprocessable_entity, root: "data"
     end
   end
 
   # PATCH/PUT /general_parameters/1
   def update
     if @general_parameter.update(general_parameter_params)
-      render json: @general_parameter
+      render json: @general_parameter, root: "data"
     else
-      render json: @general_parameter.errors, status: :unprocessable_entity
+      render json: @general_parameter.errors, status: :unprocessable_entity, root: "data"
     end
   end
 

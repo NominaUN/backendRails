@@ -7,7 +7,7 @@ class Api::V1::PositionsController < ApplicationController
     filtering_params(params).each do |key,value|
       @positions= @positions.public_send(key,value) if value.present?
     end
-    render json: @positions,root:DATA
+    render json: @positions, root: "data"
   end
 
   # GET /positions/1
@@ -20,18 +20,18 @@ class Api::V1::PositionsController < ApplicationController
     @position = Position.new(position_params)
 
     if @position.save
-      render json: @position, status: :created ,root:DATA#, location: @position
+      render json: @position, status: :created, location: @position, root: "data" 
     else
-      render json: @position.errors, status: :unprocessable_entity,root:DATA
+      render json: @position.errors, status: :unprocessable_entity, root: "data"
     end
   end
 
   # PATCH/PUT /positions/1
   def update
     if @position.update(position_params)
-      render json: @position,root:DATA
+      render json: @position, root: "data"
     else
-      render json: @position.errors, status: :unprocessable_entity,root:DATA
+      render json: @position.errors, status: :unprocessable_entity, root: "data"
     end
   end
 

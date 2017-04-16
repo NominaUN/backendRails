@@ -3,14 +3,14 @@ class Api::V1::PaydayDetailsController < ApplicationController
 
   # GET /payday_details
   def index
-    @payday_details = PaydayDetail.all
+    @payday_details = PaydayDetail.load_payday_details(params[:page], params[:per_page])
 
-    render json: @payday_details
+    render json: @payday_details, root: "data"
   end
 
   # GET /payday_details/1
   def show
-    render json: @payday_detail
+    render json: @payday_detail, root: "data"
   end
 
   # POST /payday_details
@@ -18,18 +18,18 @@ class Api::V1::PaydayDetailsController < ApplicationController
     @payday_detail = PaydayDetail.new(payday_detail_params)
 
     if @payday_detail.save
-      render json: @payday_detail, status: :created, location: @payday_detail
+      render json: @payday_detail, status: :created, location: @payday_detail, root: "data"
     else
-      render json: @payday_detail.errors, status: :unprocessable_entity
+      render json: @payday_detail.errors, status: :unprocessable_entity, root: "data"
     end
   end
 
   # PATCH/PUT /payday_details/1
   def update
     if @payday_detail.update(payday_detail_params)
-      render json: @payday_detail
+      render json: @payday_detail, root: "data"
     else
-      render json: @payday_detail.errors, status: :unprocessable_entity
+      render json: @payday_detail.errors, status: :unprocessable_entity, root: "data"
     end
   end
 

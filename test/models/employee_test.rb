@@ -3,9 +3,9 @@ include FactoryGirl::Syntax::Methods
 class EmployeeTest < ActiveSupport::TestCase
 
 	def setup
-		@area = Area.new(name: "Technology")
+		@area = Area.new(name_area: "Technology")
 		@area.save
-		@position = Position.new(name: "Manager")
+		@position = Position.new(name_position: "Manager")
 		@position.save
 		
 		@employee = Employee.new(position_id: @position.id, area_id: @area.id, document_type: "CC", document_number: 123456, first_name: "Manuel",

@@ -5,12 +5,12 @@ class Api::V1::VacationsController < ApplicationController
   def index
     @vacations = Vacation.load_vacations(params[:page], params[:per_page])
 
-    render json: @vacations
+    render json: @vacations, root: "data"
   end
 
   # GET /vacations/1
   def show
-    render json: @vacation
+    render json: @vacation, root: "data"
   end
 
   # POST /vacations
@@ -18,18 +18,18 @@ class Api::V1::VacationsController < ApplicationController
     @vacation = Vacation.new(vacation_params)
 
     if @vacation.save
-      render json: @vacation, status: :created, location: @vacation
+      render json: @vacation, status: :created, location: @vacation, root: "data"
     else
-      render json: @vacation.errors, status: :unprocessable_entity
+      render json: @vacation.errors, status: :unprocessable_entity, root: "data"
     end
   end
 
   # PATCH/PUT /vacations/1
   def update
     if @vacation.update(vacation_params)
-      render json: @vacation
+      render json: @vacation, root: "data"
     else
-      render json: @vacation.errors, status: :unprocessable_entity
+      render json: @vacation.errors, status: :unprocessable_entity, root: "data"
     end
   end
 
