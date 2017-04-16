@@ -1,5 +1,5 @@
 class Employee < ActiveRecord::Base
-  before_validation {self.document_type.upcase!}
+  before_validation {uppercase_document_type}
   before_save {email.downcase!}
   validates :document_number, :numericality => { :greater_than => 0 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -15,6 +15,10 @@ class Employee < ActiveRecord::Base
   has_many :vacations
   has_many :novelties
   has_many :users
+  
+  def uppercase_document_type
+    document_type.upcase!
+  end
   
   validates_inclusion_of :document_type, in: %w( CC CE NIT)
 

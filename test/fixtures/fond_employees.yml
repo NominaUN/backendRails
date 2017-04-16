@@ -1,9 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-#one:
- # employee: one
-  #fond: one
-
-#two:
- # employee: two
-  #fond: two
+one:
+  id: 1
+  employee_id: one
+  fond_id: one
