@@ -3,10 +3,10 @@ require 'test_helper'
 class VacationTest < ActiveSupport::TestCase 
    
   def setup 
-    @area = Area.new() 
-    @area.save 
-    @position = Position.new() 
-    @position.save 
+    @area = Area.new(area_name: "Technology")
+	@area.save
+	@position = Position.new(position_name: "Manager")
+	@position.save 
 	
 	@pay_master = PaydayMaster.new(payday_type: "tipo 1", payday_date: Date.new(2017,11,29), description: "test")
 	@pay_master.save

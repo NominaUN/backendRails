@@ -6,6 +6,6 @@ FactoryGirl.define do
   end
 
   factory :area do
-    name_area {generate(:area_name)}
+    area_name {generate(:area_name)}
   end
 end

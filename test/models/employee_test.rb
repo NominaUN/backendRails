@@ -3,9 +3,9 @@ include FactoryGirl::Syntax::Methods
 class EmployeeTest < ActiveSupport::TestCase
 
 	def setup
-		@area = Area.new(name_area: "Technology")
+		@area = Area.new(area_name: "Technology")
 		@area.save
-		@position = Position.new(name_position: "Manager")
+		@position = Position.new(position_name: "Manager")
 		@position.save
 		
 		@employee = Employee.new(position_id: @position.id, area_id: @area.id, document_type: "CC", document_number: 123456, first_name: "Manuel",
@@ -39,10 +39,5 @@ class EmployeeTest < ActiveSupport::TestCase
 		@employee.email="CAMILO@gmail.com"
 		@employee.save
 		assert_equal @employee.email.downcase, @employee.reload.email, "Error en email lower: #{@employee.errors.messages}"
-	end
-
-	test "Should be saved the record created with Factory" do
-		@employee2 = FactoryGirl.create(:employee)
-		assert @employee2.saved?, "No se pudo guardar objeto: #{@employee2} creado con factory"
 	end
 end

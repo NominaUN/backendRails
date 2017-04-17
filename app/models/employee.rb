@@ -1,5 +1,4 @@
 class Employee < ActiveRecord::Base
-  before_validation {document_type.upcase!}
   before_save {email.downcase!}
   validates :document_number, :numericality => { :greater_than => 0 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

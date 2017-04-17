@@ -2,7 +2,7 @@
 
 one:
   id: 1
-  username: MyString
-  password: MyString
-  role: MyString
+  user_name: MyString
+  user_pass: MyString
+  user_role: MyString
   employee_id: one

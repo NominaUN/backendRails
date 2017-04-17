@@ -1,8 +1,8 @@
 class CreateVacations < ActiveRecord::Migration[5.0]
   def change
     create_table :vacations do |t|
-      t.decimal :paid_days
-      t.decimal :taken_days
+      t.numeric :paid_days
+      t.numeric :taken_days
       t.date :start_date
       t.date :end_date
       t.references :employee, foreign_key: true

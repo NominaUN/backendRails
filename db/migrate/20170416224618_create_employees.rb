@@ -1,4 +1,4 @@
-class CreateEmployees < ActiveRecord::Migration
+class CreateEmployees < ActiveRecord::Migration[5.0]
   def change
     create_table :employees do |t|
       t.string :document_type
@@ -14,13 +14,13 @@ class CreateEmployees < ActiveRecord::Migration
       t.string :email
       t.date :admission_date
       t.date :retirement_date
-      t.decimal :salary
+      t.numeric :salary
       t.boolean :transport_aid
       t.boolean :integral_salary
-      t.references :area, index: true, foreign_key: true
-      t.references :position, index: true, foreign_key: true
+      t.references :area, foreign_key: true
+      t.references :position, foreign_key: true
 
-      t.timestamps null: false
+      t.timestamps
     end
   end
 end

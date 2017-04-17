@@ -1,4 +1,4 @@
 class AreaSerializer < ActiveModel::Serializer
-  attributes :id, :name_area
+  attributes :id, :area_name
   has_many :employees
 end

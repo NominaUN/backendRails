@@ -2,7 +2,7 @@
 
 one:
   id: 1
-  action: MyString
+  option_name: MyString
   insert_action: false
   update_action: false
   delete_action: false

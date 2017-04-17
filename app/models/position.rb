@@ -1,6 +1,6 @@
 class Position < ActiveRecord::Base
-  default_scope {order("positions.name_position ASC")}
-  scope :name_position, ->(position) {where name_position:  position}
+  default_scope {order("positions.position_name ASC")}
+  scope :position_name, ->(position) {where position_name:  position}
 
   has_many :employees
   

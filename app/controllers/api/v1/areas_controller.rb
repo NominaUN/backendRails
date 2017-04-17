@@ -1,6 +1,6 @@
 class Api::V1::AreasController < ApplicationController
   before_action :set_area, only: [:show, :update, :destroy]
-  DATA="data"
+
   # GET /areas
   def index
     @areas = Area.load_areas(params[:page], params[:per_page])
@@ -49,12 +49,12 @@ class Api::V1::AreasController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def area_params
 
-      params.permit(:name_area)
+      params.permit(:area_name)
       #params.fetch(:area,:name, {})
 
     end
 
     def filtering_params(params)
-      params.slice( :name_area)
+      params.slice(:area_name)
     end
 end

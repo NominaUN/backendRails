@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :password, :role
+  attributes :id, :user_name, :user_pass, :user_role
   
   belongs_to :employee
   has_many :logs

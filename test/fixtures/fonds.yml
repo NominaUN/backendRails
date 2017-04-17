@@ -5,4 +5,4 @@ one:
   document_type: MyString
   document_number: 1
   business_name: MyString
-  type_of_fond: MyString
+  fond_type: MyString

@@ -1,6 +1,6 @@
 class Api::V1::PositionsController < ApplicationController
   before_action :set_position, only: [:show, :update, :destroy]
-  DATA="data"
+
   # GET /positions
   def index
     @positions = Position.load_positions(params[:page], params[:per_page])
@@ -48,11 +48,11 @@ class Api::V1::PositionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def position_params
-      params.permit(:name_position)
+      params.permit(:position_name)
       #params.fetch(:position, {})
     end
 
     def filtering_params(params)
-      params.slice( :name_position)
+      params.slice(:position_name)
     end
 end
