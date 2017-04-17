@@ -3,16 +3,18 @@ class PaydayDetail < ApplicationRecord
   belongs_to :employee
   belongs_to :payday_master
 
-  validates :base_value, :worked_days, :start_date, :end_date, presence: true
+  validates :base_value, :win, :loss, :appropiation, :worked_days, :start_date, :end_date, presence: true
   
   default_scope {order("payday_details.start_date ASC")}
 
   def self.load_payday_details(page=1,per_page=20)
-    paginate(:page => page,:per_page => per_page)
+	includes(:concept, :employee, :payday_master)
+		.paginate(:page => page,:per_page => per_page)
   end
 
   def self.payday_detail_by_id(id)
-    find_by_id(id)
+    includes(:concepts, :employees, :payday_master)
+		.find_by_id(id)
   end
 
   def self.payday_details_by_ids(ids, page=1, per_page=20)
