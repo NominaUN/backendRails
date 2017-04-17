@@ -7,5 +7,25 @@ class GeneralParameterTest < ActiveSupport::TestCase
   
   test "should be valid the general_parameter instance" do
 	assert @general_parameter.valid?
-  end	
+  end
+
+  test "round_type should be present" do
+	@general_parameter.round_type = nil
+	assert_not @general_parameter.valid?
+  end
+  
+  test "laboral_days should be present" do
+	@general_parameter.laboral_days = nil
+	assert_not @general_parameter.valid?
+  end
+  
+  test "payday should be present" do
+	@general_parameter.payday = ""
+	assert_not @general_parameter.valid?
+  end
+  
+  test "integral_base should be present" do
+	@general_parameter.integral_base = nil
+	assert_not @general_parameter.valid?
+  end  
 end
