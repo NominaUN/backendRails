@@ -43,7 +43,7 @@ class Api::V1::PositionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_position
-      @position = Position.find(params[:id])
+      @position = Position.position_by_id(params[:id])[0]
     end
 
     # Only allow a trusted parameter "white list" through.

@@ -12,7 +12,9 @@ class Position < ActiveRecord::Base
   end
   
   def self.position_by_id(id)
-    find_by_id(id)
+    load_positions().where(positions:{
+      id: id
+    })
   end
 
   def self.positions_by_ids(ids, page=1, per_page=20)
