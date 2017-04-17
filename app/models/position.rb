@@ -1,4 +1,7 @@
 class Position < ActiveRecord::Base
+
+  validates :position_name, presence: true
+
   default_scope {order("positions.position_name ASC")}
   scope :position_name, ->(position) {where position_name:  position}
 

@@ -1,4 +1,7 @@
 class Area < ActiveRecord::Base
+
+  validates :area_name, presence: true
+
   default_scope {order("areas.area_name ASC")}
   scope :area_name, -> (nombre) {where area_name: nombre}
   has_many :employees

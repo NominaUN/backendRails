@@ -12,7 +12,7 @@ class Api::V1::PositionsController < ApplicationController
 
   # GET /positions/1
   def show
-    render json: @position
+    render json: @position, root: "data"
   end
 
   # POST /positions
@@ -48,8 +48,7 @@ class Api::V1::PositionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def position_params
-      params.permit(:position_name)
-      #params.fetch(:position, {})
+      params.fetch(:position, {})
     end
 
     def filtering_params(params)

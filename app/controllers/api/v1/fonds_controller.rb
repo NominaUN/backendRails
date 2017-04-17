@@ -41,7 +41,7 @@ class Api::V1::FondsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_fond
-      @fond = Fond.fond_by_id(params[:id], params[:page], params[:per_page])
+      @fond = Fond.find(params[:id]) 
     end
 
     # Only allow a trusted parameter "white list" through.

@@ -12,7 +12,7 @@ class PositionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create position" do
     assert_difference('Position.count') do
-      post api_v1_positions_url, params: { position: { position_name: "Manager" } }, as: :json
+      post api_v1_positions_url, params: { position: { } }, as: :json
     end
 
     assert_response 201

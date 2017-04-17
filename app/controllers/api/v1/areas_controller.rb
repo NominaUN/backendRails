@@ -48,10 +48,7 @@ class Api::V1::AreasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def area_params
-
-      params.permit(:area_name)
-      #params.fetch(:area,:name, {})
-
+      params.fetch(:area, {})
     end
 
     def filtering_params(params)

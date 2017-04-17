@@ -41,7 +41,7 @@ class Api::V1::NoveltiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_novelty
-      @novelty = Novelty.novelty_by_id(params[:id], params[:page], params[:per_page])
+      @novelty = Novelty.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

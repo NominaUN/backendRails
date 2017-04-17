@@ -1,12 +1,16 @@
 require 'test_helper'
 
 class AreaTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-  test "area creada por medio de factoryGirl" do
-    @area = FactoryGirl.create(:area)
-    assert @area.persisted?, "No se guardo #{@area}"
+  def setup
+	@area = Area.new(area_name: "Sales")
   end
-  ##probar que se encuentra
+  
+  test "should be valid the area instance" do
+	assert @area.valid?
+  end	
+  
+  test "area_name should be present" do
+	@area.area_name = ""
+	assert_not @area.valid?
+  end 
 end

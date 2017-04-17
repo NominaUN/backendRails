@@ -22,33 +22,33 @@ class VacationTest < ActiveSupport::TestCase
   end 
  
   test "should be a valid record" do 
-  #puts @vacation
-  assert(@vacation.valid?, "Considered valid the following vacation: #{@vacation.attributes} \n pay_master: #{@pay_master.attributes}")
+	#puts @vacation
+	assert(@vacation.valid?, "Considered valid the following vacation: #{@vacation.attributes} \n pay_master: #{@pay_master.attributes}")
   end 
    
   test "employee_id should be present" do 
-  @vacation.employee_id = nil 
-  assert_not @vacation.valid? 
+	@vacation.employee_id = nil 
+	assert_not @vacation.valid? 
   end 
    
   test "paid_days should be present" do 
-  @vacation.paid_days = nil 
-  assert_not @vacation.valid? 
+	@vacation.paid_days = nil 
+	assert_not @vacation.valid? 
   end 
    
   test "taken_days should be present" do 
-  @vacation.taken_days = nil 
-  assert_not @vacation.valid? 
+	@vacation.taken_days = nil 
+	assert_not @vacation.valid? 
   end 
    
   test "start_date should be present" do 
-  @vacation.start_date = nil 
-  assert_not @vacation.valid? 
+	@vacation.start_date = nil 
+	assert_not @vacation.valid? 
   end 
    
-  test "document_number should be present" do 
-  @vacation.start_date = nil 
-  assert_not @vacation.valid? 
+  test "end_date should be present" do 
+	@vacation.end_date = nil 
+	assert_not @vacation.valid? 
   end
 
   test "email addresses should be unique" do

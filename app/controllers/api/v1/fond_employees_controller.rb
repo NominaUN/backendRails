@@ -41,11 +41,7 @@ class Api::V1::FondEmployeesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_fond_employee
-      if params[:byFond]
-        @fond_employee = FondEmployee.fonds_employees_by_fond(params[:id], params[:page], params[:per_page])  
-      else
-        @fond_employee = FondEmployee.fonds_by_id_employee(params[:id], params[:page], params[:per_page])
-      end
+      @fond_employee = FondEmployee.find(params[:id])  
     end
 
     # Only allow a trusted parameter "white list" through.

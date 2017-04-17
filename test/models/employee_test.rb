@@ -1,5 +1,5 @@
 require 'test_helper'
-include FactoryGirl::Syntax::Methods
+
 class EmployeeTest < ActiveSupport::TestCase
 
 	def setup
@@ -20,14 +20,6 @@ class EmployeeTest < ActiveSupport::TestCase
 
   test "should be a valid record to save" do
 	assert @employee.valid?, "The record: #{@employee.attributes} \n should be ok \n The errors in employee are: #{@employee.errors.messages}"
-	end
-
-	test "should be saved as uppercase the document_type" do
-		d_t = "cc"
-		@employee.document_type=d_t
-		@employee.save
-		Rails::logger.debug "Errors in employee: #{@employee.errors.messages}"
-		assert_equal d_t.upcase, @employee.reload.document_type
 	end
 
 	test "should not validate employee with document_number equal to zero" do

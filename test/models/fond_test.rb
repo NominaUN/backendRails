@@ -1,7 +1,6 @@
 require 'test_helper'
 
-class FondTest < ActiveSupport::TestCase
-  
+class FondTest < ActiveSupport::TestCase 
   def setup
 	@fond = Fond.new(document_type: "CC", document_number: 123546, business_name: "Test1", fond_type: "Tipo1" )
   end
