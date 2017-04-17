@@ -7,11 +7,12 @@ class Vacation < ApplicationRecord
   default_scope {order("vacations.start_date ASC")}
 
   def self.load_vacations(page=1,per_page=20)
-    paginate(:page => page,:per_page => per_page)
+	includes(:employee, :payday_master)
+		.paginate(:page => page,:per_page => per_page)
   end
 
   def self.vacation_by_id(id)
-    find_by_id(id)
+    includes(:employee, :payday_master).find_by_id(id)
   end
 
   def self.vacations_by_ids(ids,page = 1, per_page = 20)

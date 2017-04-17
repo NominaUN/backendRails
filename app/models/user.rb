@@ -9,12 +9,12 @@ class User < ApplicationRecord
   default_scope {order("users.user_name ASC")}
 
   def self.load_users(page=1,per_page=20)
-    includes(:logs, :options)
+    includes(:employee, :logs, :options)
         .paginate(:page => page,:per_page => per_page)
   end
 
   def self.user_by_id(id)
-    includes(:logs, :options).find_by_id(id)
+    includes(:employee, :logs, :options).find_by_id(id)
   end
 
   def self.users_by_ids(ids, page=1, per_page=20)
