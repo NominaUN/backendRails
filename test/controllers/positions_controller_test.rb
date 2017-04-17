@@ -12,7 +12,7 @@ class PositionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create position" do
     assert_difference('Position.count') do
-      post api_v1_positions_url, params: { position: { } }, as: :json
+      post api_v1_positions_url, params: { position: {position_name: "Human Resources" } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class PositionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update position" do
-    patch api_v1_position_url(@position), params: { position: {  } }, as: :json
+    patch api_v1_position_url(@position), params: { position: {position_name:"Technology"  } }, as: :json
     assert_response 200
   end
 

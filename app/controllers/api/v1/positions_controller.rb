@@ -4,9 +4,9 @@ class Api::V1::PositionsController < ApplicationController
   # GET /positions
   def index
     @positions = Position.load_positions(params[:page], params[:per_page])
-    filtering_params(params).each do |key,value|
-      @positions= @positions.public_send(key,value) if value.present?
-    end
+#    filtering_params(params).each do |key,value|
+#      @positions= @positions.public_send(key,value) if value.present?
+#    end
     render json: @positions, root: "data"
   end
 
@@ -20,7 +20,7 @@ class Api::V1::PositionsController < ApplicationController
     @position = Position.new(position_params)
 
     if @position.save
-      render json: @position, status: :created, location: @position, root: "data" 
+      render json: @position, status: :created, root: "data" 
     else
       render json: @position.errors, status: :unprocessable_entity, root: "data"
     end
@@ -48,10 +48,10 @@ class Api::V1::PositionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def position_params
-      params.fetch(:position, {})
+      params.require(:position).permit(:position_name)
     end
 
     def filtering_params(params)
-      params.slice(:position_name)
+      params.require(:position).permit(:position_name)
     end
 end
