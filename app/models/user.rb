@@ -1,20 +1,20 @@
 class User < ApplicationRecord
   belongs_to :employee
   
-  validates :username, :password, :role, presence: true
+  validates :user_name, :user_pass, :user_role, presence: true
   
   has_many :logs
   has_many :options, through: :logs  
   
-  default_scope {order("users.username ASC")}
+  default_scope {order("users.user_name ASC")}
 
   def self.load_users(page=1,per_page=20)
-    includes(:logs, :options)
+    includes(:employee, :logs, :options)
         .paginate(:page => page,:per_page => per_page)
   end
 
   def self.user_by_id(id)
-    includes(:logs, :options).find_by_id(id)
+    includes(:employee, :logs, :options).find_by_id(id)
   end
 
   def self.users_by_ids(ids, page=1, per_page=20)

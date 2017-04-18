@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404215219) do
+ActiveRecord::Schema.define(version: 20170416230403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "areas", force: :cascade do |t|
-    t.string   "name"
+    t.string   "area_name",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "concepts", force: :cascade do |t|
-    t.string   "concept_name"
-    t.string   "category"
+    t.string   "concept_name", null: false
+    t.string   "category",     null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20170404215219) do
     t.date     "retirement_date"
     t.decimal  "salary",          null: false
     t.boolean  "transport_aid",   null: false
-    t.boolean  "integral_salary"
+    t.boolean  "integral_salary", null: false
     t.integer  "area_id",         null: false
     t.integer  "position_id",     null: false
     t.datetime "created_at",      null: false
@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 20170404215219) do
   end
 
   create_table "fond_employees", force: :cascade do |t|
-    t.integer  "employee_id"
-    t.integer  "fond_id"
+    t.integer  "employee_id", null: false
+    t.integer  "fond_id",     null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["employee_id"], name: "index_fond_employees_on_employee_id", using: :btree
@@ -67,24 +67,24 @@ ActiveRecord::Schema.define(version: 20170404215219) do
     t.string   "document_type",   null: false
     t.integer  "document_number", null: false
     t.string   "business_name",   null: false
-    t.string   "type_of_fond",    null: false
+    t.string   "fond_type",       null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
   create_table "general_parameters", force: :cascade do |t|
-    t.integer  "round_type"
-    t.integer  "laboral_days"
-    t.string   "payday"
-    t.decimal  "integral_base"
+    t.integer  "round_type",    null: false
+    t.integer  "laboral_days",  null: false
+    t.string   "payday",        null: false
+    t.decimal  "integral_base", null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   create_table "logs", force: :cascade do |t|
-    t.datetime "log_time"
-    t.integer  "user_id"
-    t.integer  "option_id"
+    t.datetime "log_time",   null: false
+    t.integer  "user_id",    null: false
+    t.integer  "option_id",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["option_id"], name: "index_logs_on_option_id", using: :btree
@@ -98,9 +98,9 @@ ActiveRecord::Schema.define(version: 20170404215219) do
     t.integer  "period",           null: false
     t.integer  "applied",          null: false
     t.string   "description",      null: false
-    t.decimal  "percentage1"
-    t.decimal  "percentage2"
-    t.decimal  "percentage3"
+    t.decimal  "percentage1",      null: false
+    t.decimal  "percentage2",      null: false
+    t.decimal  "percentage3",      null: false
     t.integer  "employee_id"
     t.integer  "payday_detail_id"
     t.datetime "created_at",       null: false
@@ -110,10 +110,10 @@ ActiveRecord::Schema.define(version: 20170404215219) do
   end
 
   create_table "options", force: :cascade do |t|
-    t.string   "action"
-    t.boolean  "insert_action"
-    t.boolean  "update_action"
-    t.boolean  "delete_action"
+    t.string   "option_name",   null: false
+    t.boolean  "insert_action", null: false
+    t.boolean  "update_action", null: false
+    t.boolean  "delete_action", null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -126,9 +126,9 @@ ActiveRecord::Schema.define(version: 20170404215219) do
     t.decimal  "worked_days",      null: false
     t.date     "start_date",       null: false
     t.date     "end_date",         null: false
-    t.integer  "concept_id"
-    t.integer  "employee_id"
-    t.integer  "payday_master_id"
+    t.integer  "concept_id",       null: false
+    t.integer  "employee_id",      null: false
+    t.integer  "payday_master_id", null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.index ["concept_id"], name: "index_payday_details_on_concept_id", using: :btree
@@ -137,36 +137,36 @@ ActiveRecord::Schema.define(version: 20170404215219) do
   end
 
   create_table "payday_masters", force: :cascade do |t|
-    t.string   "payday_type"
-    t.date     "payday_date"
-    t.string   "description"
+    t.string   "payday_type", null: false
+    t.date     "payday_date", null: false
+    t.string   "description", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
   create_table "positions", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "position_name", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "password"
-    t.string   "role"
-    t.integer  "employee_id"
+    t.string   "user_name",   null: false
+    t.string   "user_pass",   null: false
+    t.string   "user_role",   null: false
+    t.integer  "employee_id", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["employee_id"], name: "index_users_on_employee_id", using: :btree
   end
 
   create_table "vacations", force: :cascade do |t|
-    t.decimal  "paid_days"
-    t.decimal  "taken_days"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.integer  "employee_id"
-    t.integer  "payday_master_id"
+    t.decimal  "paid_days",        null: false
+    t.decimal  "taken_days",       null: false
+    t.date     "start_date",       null: false
+    t.date     "end_date",         null: false
+    t.integer  "employee_id",      null: false
+    t.integer  "payday_master_id", null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.index ["employee_id"], name: "index_vacations_on_employee_id", using: :btree

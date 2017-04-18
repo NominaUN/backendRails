@@ -1,19 +1,19 @@
 class Option < ApplicationRecord
   
-  validates :action, presence: true
+  validates :option_name, :insert_action, :update_action, :delete_action,  presence: true
 
   has_many :logs
   has_many :users, through: :logs  
    
-  default_scope {order("options.action ASC")}
+  default_scope {order("options.option_name ASC")}
   
   def self.load_options(page=1,per_page=20)
-	include(:logs, :users)
+	joins(:logs, :users)
 		.paginate(:page => page,:per_page => per_page)
   end
   
   def self.option_by_id(id)
-    include(:logs, :users).find_by_id(id)
+    joins(:logs, :users).find_by_id(id)
   end
   
   def self.options_by_ids(ids, page=1, per_page=20)

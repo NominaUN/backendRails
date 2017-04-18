@@ -1,13 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-#one:
-#  action: MyString
-#  insert_action: false
-#  update_action: false
-#  delete_action: false
-
-#two:
-#  action: MyString
-#  insert_action: false
-#  update_action: false
- # delete_action: false
+one:
+  id: 1
+  option_name: MyString
+  insert_action: false
+  update_action: false
+  delete_action: false

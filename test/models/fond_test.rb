@@ -1,9 +1,8 @@
 require 'test_helper'
 
-class FondTest < ActiveSupport::TestCase
-  
+class FondTest < ActiveSupport::TestCase 
   def setup
-	@fond = Fond.new(document_type: "CC", document_number: 123546, business_name: "Test1", type_of_fond: "Tipo1" )
+	@fond = Fond.new(document_type: "CC", document_number: 123546, business_name: "Test1", fond_type: "Tipo1" )
   end
   
   test "should be valid the fond instance" do
@@ -25,8 +24,8 @@ class FondTest < ActiveSupport::TestCase
 	assert_not @fond.valid?
   end
   
-  test "type_of_fond should be present" do
-	@fond.type_of_fond = ""
+  test "fond_type should be present" do
+	@fond.fond_type = ""
 	assert_not @fond.valid?
   end
 end

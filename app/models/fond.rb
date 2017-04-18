@@ -1,12 +1,11 @@
 class Fond < ApplicationRecord
-	before_validation {self.document_type.upcase!}
 	validates_inclusion_of :document_type, in: %w( CC CE NIT)
 
 	validates :document_number, :numericality => { :greater_than => 0 }
 	validates :document_type, presence: true
 	validates :document_number, presence: true
 	validates :business_name, presence: true
-	validates :type_of_fond, presence: true
+	validates :fond_type, presence: true
 	
 	has_many :fond_employees
 	has_many :employees, through: :fond_employees
@@ -20,8 +19,9 @@ class Fond < ApplicationRecord
 
 	def self.fond_by_id(id, page=1,per_page=20)
 		includes(:employees)
-				.find_by_id(id)
-				.paginate(:page => page,:per_page => per_page)
+				.where(fonds:{
+						id: id
+				}).paginate(:page => page,:per_page => per_page)
 	end
 
 	def self.fonds_by_ids(ids, page = 1, per_page = 10)
