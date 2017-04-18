@@ -22,12 +22,12 @@ class Employee < ActiveRecord::Base
   scope :document_type, -> (document_type) {where document_type: document_type}
 
   def self.load_employees(page=1,per_page=20)
-    includes(:fonds, :payday_details, :vacations, :novelties, :users)
+    includes(:fonds, :payday_details, :vacations, :novelties, :users, :area, :position)
         .paginate(:page => page,:per_page => per_page)
   end
 
   def self.employee_by_id(id)
-    includes(:fonds, :payday_details, :vacations, :novelties, :users).find_by_id(id)
+    includes(:fonds, :payday_details, :vacations, :novelties, :users, :area, :position).find_by_id(id)
   end
 
   def self.employees_by_ids(ids, page=1, per_page=20)
