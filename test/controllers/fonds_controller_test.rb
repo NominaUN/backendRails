@@ -12,7 +12,7 @@ class FondsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create fond" do
     assert_difference('Fond.count') do
-      post api_v1_fonds_url, params: { fond: {  } }, as: :json
+      post api_v1_fonds_url, params: { fond: { document_type: "CC", document_number: 7854422 , business_name: "Colsubsidio", fond_type: "CajaComp" } }, as: :json
     end
 
     assert_response 201
@@ -23,8 +23,8 @@ class FondsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should update fond" do
-    patch api_v1_fond_url(@fond), params: { fond: {  } }, as: :json
+  test "should update fond by document_number" do
+    patch api_v1_fond_url(@fond), params: { fond: { document_type: "CC", document_number: 112233 } }, as: :json
     assert_response 200
   end
 
