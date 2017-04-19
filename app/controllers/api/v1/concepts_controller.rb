@@ -18,7 +18,7 @@ class Api::V1::ConceptsController < ApplicationController
     @concept = Concept.new(concept_params)
 
     if @concept.save
-      render json: @concept, status: :created, location: @concept, root: "data"
+      render json: @concept, status: :created,  root: "data"
     else
       render json: @concept.errors, status: :unprocessable_entity, root: "data"
     end
@@ -41,11 +41,12 @@ class Api::V1::ConceptsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_concept
-      @concept = Concept.concept_by_id(params[:id], params[:page], params[:per_page])
+      @concept = Concept.concept_by_id(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def concept_params
-      params.fetch(:concept, :page, :per_page, {})
+      params.require(:concept).permit(:concept_name, :category)
+      #params.fetch(:concept, :page, :per_page, {})
     end
 end

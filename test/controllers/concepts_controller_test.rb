@@ -12,7 +12,7 @@ class ConceptsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create concept" do
     assert_difference('Concept.count') do
-      post api_v1_concepts_url, params: { concept: {  } }, as: :json
+      post api_v1_concepts_url, params: { concept: {concept_name: "Salud", category: "Devengado" } }, as: :json
     end
 
     assert_response 201
@@ -23,8 +23,13 @@ class ConceptsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should update concept" do
-    patch api_v1_concept_url(@concept), params: { concept: {  } }, as: :json
+  test "should update concept with just concept_name" do
+    patch api_v1_concept_url(@concept), params: { concept: {concept_name: "Pension"  } }, as: :json
+    assert_response 200
+  end
+
+  test "should update concept with just category" do
+    patch api_v1_concept_url(@concept), params: { concept: {category: "Deducido"  } }, as: :json
     assert_response 200
   end
 
