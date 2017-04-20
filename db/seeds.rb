@@ -3,15 +3,16 @@
 #
 # Examples:
 #
-  movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-  Character.create(name: 'Luke', movie: movies.first)
-Usuario.create(email: 'admin', nickname: 'UOne', name: 'User One', password: "123")
+  # movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+  # Character.create(name: 'Luke', movie: movies.first)
+
+
 
 Area.create!([{area_name: 'Administrativo'},{area_name: 'Investigación y Desarrollo'},{area_name: 'Atención al Cliente'},{area_name: 'Comercial'}])
 Position.create!([{position_name: 'Gerente General'},{position_name: 'Director de I+D'},{position_name: 'Director de Atención al Cliente'},{position_name: 'Gerente Comercial'}])
 Concept.create!([{concept_name: 'Salario', category: 'Devengado'},{concept_name: 'Auxilio de Transporte', category: 'Devengado'},
 	{concept_name: 'Salud', category: 'Deducido'},{concept_name: 'Pensión', category: 'Deducido'},{concept_name: 'Vacaciones', category: 'Provisión'},
-	{concept_name: 'Prima', category: 'Provisión'},{concept_name: 'Cesantías', category: 'Provisión'},
+	{concept_name: 'Prima', category: 'Pr	ovisión'},{concept_name: 'Cesantías', category: 'Provisión'},
 	{concept_name: 'Intereses de Cesantías', category: 'Provisión'}])
 Fond.create!([{document_type: 'NIT', document_number: '12345', business_name: 'Compensar', fond_type: 'CajaComp'},
 				{document_type: 'NIT', document_number: '67890', business_name: 'Positiva', fond_type: 'ARL'},
@@ -55,7 +56,7 @@ Novelty.create!([{novelty_type: 'Inactividad', category: 'Devengado', novelty_va
 	novelty_value: 100000, period: 1, applied: 1, description: 'Bonificacion', percentage1: 0, percentage2: 0, percentage3: 0, employee_id: 3,
 	payday_detail_id: 3}])
 
-User.create!([{user: 'ajwj', password: '123456', user_role: 'EMPLEADO', employee_id: 1},{user_name: 'llav', user_pass: '12345', user_role: 'EMPLEADO', employee_id: 2},
+User.create!([{user_name: 'admin@admin.com', user_pass: '12345678', user_role: 'EMPLEADO', employee_id: 1},{user_name: 'llav', user_pass: '12345', user_role: 'EMPLEADO', employee_id: 2},
 		{user_name: 'twp', user_pass: '1234567', user_role: 'EMPLEADO', employee_id: 3},{user_name: 'gls', user_pass: '12345678', user_role: 'ADMIN', employee_id: 4}])
 Option.create!([{option_name: 'Liquidar', insert_action: true, update_action: true, delete_action: true},
 				{option_name: 'Empleados', insert_action: true, update_action: true, delete_action: true},
@@ -63,4 +64,4 @@ Option.create!([{option_name: 'Liquidar', insert_action: true, update_action: tr
 Log.create!([{log_time: '01/02/2017', user_id: 4, option_id: 1}])
 GeneralParameter.create!([{round_type: 100, laboral_days: 5, payday: 'QUINCENAL', integral_base: 70}])
 
-Usuario.create(email: 'admin@admin.com', nickname: 'UOne', name: 'User One', password: "123")
+Usuario.create!(email: 'admin@admin.com', nickname: 'UOne', name: 'User One', password: "12345678")
