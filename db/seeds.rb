@@ -64,4 +64,7 @@ Option.create!([{option_name: 'Liquidar', insert_action: true, update_action: tr
 Log.create!([{log_time: '01/02/2017', user_id: 4, option_id: 1}])
 GeneralParameter.create!([{round_type: 100, laboral_days: 5, payday: 'QUINCENAL', integral_base: 70}])
 
-Usuario.create!(email: 'admin@admin.com', nickname: 'UOne', name: 'User One', password: "12345678")
+
+
+#Usuario.create!(email: 'admin@admin.com', nickname: 'UOne', name: 'User One', password: '12345678')
+#Usuario.create!(email: 'user@example.com', nickname: 'UOne', name: 'User One', password: "monkey67")
