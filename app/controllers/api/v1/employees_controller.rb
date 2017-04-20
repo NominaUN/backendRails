@@ -20,7 +20,7 @@ class Api::V1::EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
 
     if @employee.save
-      render json: @employee, status: :created, location: @employee, root: "data"
+      render json: @employee, status: :created, root: "data"
     else
       render json: @employee.errors, status: :unprocessable_entity, root: "data"
     end
