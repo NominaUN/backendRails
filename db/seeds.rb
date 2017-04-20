@@ -3,8 +3,8 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+  movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+  Character.create(name: 'Luke', movie: movies.first)
 Usuario.create(email: 'admin', nickname: 'UOne', name: 'User One', password: "123")
 
 Area.create!([{area_name: 'Administrativo'},{area_name: 'Investigación y Desarrollo'},{area_name: 'Atención al Cliente'},{area_name: 'Comercial'}])
@@ -62,3 +62,5 @@ Option.create!([{option_name: 'Liquidar', insert_action: true, update_action: tr
 				{option_name: 'Estadisticas', insert_action: true, update_action: true, delete_action: true}])
 Log.create!([{log_time: '01/02/2017', user_id: 4, option_id: 1}])
 GeneralParameter.create!([{round_type: 100, laboral_days: 5, payday: 'QUINCENAL', integral_base: 70}])
+
+Usuario.create(email: 'admin@admin.com', nickname: 'UOne', name: 'User One', password: "123")
