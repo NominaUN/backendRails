@@ -18,7 +18,7 @@ class Api::V1::NoveltiesController < ApplicationController
     @novelty = Novelty.new(novelty_params)
 
     if @novelty.save
-      render json: @novelty, status: :created, location: @novelty, root: "data"
+      render json: @novelty, status: :created,  root: "data"
     else
       render json: @novelty.errors, status: :unprocessable_entity, root: "data"
     end
@@ -41,11 +41,11 @@ class Api::V1::NoveltiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_novelty
-      @novelty = Novelty.find(params[:id])
+      @novelty = Novelty.novelty_by_id(params[:id])[0]
     end
 
     # Only allow a trusted parameter "white list" through.
     def novelty_params
-      params.fetch(:novelty, :page, :per_page, {})
+      params.require(:novelty).permit(:novelty_type,:novelty_value,:category,:period,:applied,:description,:percentage1,:percentage2,:percentage3, :employee_id, :payday_detail_id)
     end
 end

@@ -15,5 +15,10 @@ FactoryGirl.define do
   factory :position do
     position_name {generate(:position_name)}
   end
+
+  factory :fond_employee do
+    employee_id 1
+    fond_id 1
+  end
   
 end

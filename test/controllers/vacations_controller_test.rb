@@ -15,7 +15,7 @@ class VacationsControllerTest < ActionDispatch::IntegrationTest
       post api_v1_vacations_url, params: { vacation: {  } }, as: :json
     end
 
-    assert_response 201
+    assert_response :success
   end
 
   test "should show vacation" do
