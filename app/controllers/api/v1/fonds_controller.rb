@@ -18,7 +18,7 @@ class Api::V1::FondsController < ApplicationController
     @fond = Fond.new(fond_params)
 
     if @fond.save
-      render json: @fond, status: :created, location: @fond, root: "data"
+      render json: @fond, status: :created, root: "data"
     else
       render json: @fond.errors, status: :unprocessable_entity, root: "data"
     end
@@ -26,6 +26,7 @@ class Api::V1::FondsController < ApplicationController
 
   # PATCH/PUT /fonds/1
   def update
+    puts(fond_params)
     if @fond.update(fond_params)
       render json: @fond, root: "data"
     else
@@ -41,11 +42,12 @@ class Api::V1::FondsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_fond
-      @fond = Fond.find(params[:id]) 
+      @fond = Fond.fond_by_id(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def fond_params
-      params.fetch(:fond, :page, :per_page, {})
+      params.require(:fond).permit(:document_type, :document_number, :business_name, :fond_type)
+      #params.fetch(:fond, :page, :per_page, {})
     end
 end

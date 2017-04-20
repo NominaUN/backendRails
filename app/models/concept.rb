@@ -9,8 +9,9 @@ class Concept < ApplicationRecord
       .paginate(:page => page, :per_page => per_page)
   end
 
-  def self.concept_by_id(id, page=1, per_page=20)
-    includes(:payday_details).find_by_id(id)
+  def self.concept_by_id(id)
+    #includes(:payday_details).find_by_id(id)
+    find_by_id(id)
   end
 
   def self.concepts_by_ids(ids, page=1, per_page=20)

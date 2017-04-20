@@ -1,5 +1,5 @@
 class Fond < ApplicationRecord
-	validates_inclusion_of :document_type, in: %w( CC CE NIT)
+
 
 	validates :document_number, :numericality => { :greater_than => 0 }
 	validates :document_type, presence: true
@@ -7,21 +7,20 @@ class Fond < ApplicationRecord
 	validates :business_name, presence: true
 	validates :fond_type, presence: true
 	
-	has_many :fond_employees
+	has_many :fond_employees, dependent: :destroy
 	has_many :employees, through: :fond_employees
 
 	default_scope {order("fonds.business_name ASC")}
+
+	validates_inclusion_of :document_type, in: %w( CC CE NIT)
 
 	def self.load_fonds(page=1, per_page=20)
 		includes(:employees)
 				.paginate(:page => page,:per_page => per_page)
 	end
 
-	def self.fond_by_id(id, page=1,per_page=20)
-		includes(:employees)
-				.where(fonds:{
-						id: id
-				}).paginate(:page => page,:per_page => per_page)
+	def self.fond_by_id(id)
+		includes(:employees).find_by_id(id)
 	end
 
 	def self.fonds_by_ids(ids, page = 1, per_page = 10)
