@@ -4,9 +4,9 @@ class Api::V1::EmployeesController < ApplicationController
   # GET /employees
   def index
     @employees = Employee.load_employees(params[:page], params[:per_page])
-    filtering_params(params).each do |key, value|
-      @employees = @employees.public_send(key, value) if value.present?
-      end
+#    filtering_params(params).each do |key, value|
+#      @employees = @employees.public_send(key, value) if value.present?
+#      end
     render json: @employees, root: "data" 
   end
 
@@ -48,7 +48,7 @@ class Api::V1::EmployeesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def employee_params
-      params.fetch(:employee, {})
+      params.require(:employee).permit(:document_type,:document_number,:first_name,:other_name,:last_name,:second_surname,:birthdate,:birthplace,:address,:phones,:email,:admission_date,:retirement_date,:salary,:transport_aid,:integral_salary,:area_id,:position_id)
     end
 
   private
