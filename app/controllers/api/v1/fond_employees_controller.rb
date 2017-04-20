@@ -18,7 +18,7 @@ class Api::V1::FondEmployeesController < ApplicationController
     @fond_employee = FondEmployee.new(fond_employee_params)
 
     if @fond_employee.save
-      render json: @fond_employee, status: :created, location: @fond_employee, root: "data"
+      render json: @fond_employee, status: :created, root: "data"
     else
       render json: @fond_employee.errors, status: :unprocessable_entity, root: "data"
     end
@@ -41,11 +41,12 @@ class Api::V1::FondEmployeesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_fond_employee
-      @fond_employee = FondEmployee.find(params[:id])  
+      @fond_employee = FondEmployee.fond_employees_by_id(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def fond_employee_params
-      params.fetch(:fond_employee, :byFond, :page, :per_page, {})
+      params.require(:fond_employee).permit(:employee_id, :fond_id)
+      #params.fetch(:fond_employee, :byFond, :page, :per_page, {})
     end
 end

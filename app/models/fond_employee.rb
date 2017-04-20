@@ -8,6 +8,10 @@ class FondEmployee < ApplicationRecord
 				.paginate(:page => page,:per_page => per_page)
 	end
 
+	def self.fond_employees_by_id(id)
+		includes(:employee, :fond).find_by_id(id)
+	end
+
 	def self.fonds_by_id_employee(id, page=1, per_page=20)
 		includes(:employee, :fond)
 				.where(employee_id: id)
