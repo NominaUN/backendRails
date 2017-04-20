@@ -41,21 +41,6 @@ class NoveltyTest < ActiveSupport::TestCase
 	assert_not @novelty.valid? 
   end
 
-  test "percentage1 should be present" do 
-	@novelty.percentage1 = nil 
-	assert_not @novelty.valid? 
-  end 
-
-  test "percentage2 should be present" do 
-	@novelty.percentage2 = nil 
-	assert_not @novelty.valid? 
-  end 
-
-  test "percentage3 should be present" do 
-	@novelty.percentage3 = nil 
-	assert_not @novelty.valid? 
-  end   
-
   test "employee_id should be present" do 
 	@novelty.employee_id = nil 
 	assert_not @novelty.valid? 
