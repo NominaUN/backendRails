@@ -4,9 +4,7 @@ class Api::V1::PositionsController < ApplicationController
   # GET /positions
   def index
     @positions = Position.load_positions(params[:page], params[:per_page])
-#    filtering_params(params).each do |key,value|
-#      @positions= @positions.public_send(key,value) if value.present?
-#    end
+
     render json: @positions, root: "data"
   end
 
@@ -51,7 +49,4 @@ class Api::V1::PositionsController < ApplicationController
       params.require(:position).permit(:position_name)
     end
 
-    def filtering_params(params)
-      params.require(:position).permit(:position_name)
-    end
 end

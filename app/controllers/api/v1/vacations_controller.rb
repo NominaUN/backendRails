@@ -18,7 +18,7 @@ class Api::V1::VacationsController < ApplicationController
     @vacation = Vacation.new(vacation_params)
 
     if @vacation.save
-      render json: @vacation, status: :created, location: @vacation, root: "data"
+      render json: @vacation, status: :created, root: "data"
     else
       render json: @vacation.errors, status: :unprocessable_entity, root: "data"
     end

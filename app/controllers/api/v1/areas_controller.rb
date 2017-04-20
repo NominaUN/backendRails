@@ -4,9 +4,7 @@ class Api::V1::AreasController < ApplicationController
   # GET /areas
   def index
     @areas = Area.load_areas(params[:page], params[:per_page])
-    filtering_params(params).each do |key, value|
-      @areas = @areas.public_send(key, value) if value.present?
-    end
+
     render json: @areas, root: "data"
   end
 
@@ -20,7 +18,7 @@ class Api::V1::AreasController < ApplicationController
     @area = Area.new(area_params)
 
     if @area.save
-      render json: @area, status: :created, location: @area, root: "data"
+      render json: @area, status: :created, root: "data"
     else
       render json: @area.errors, status: :unprocessable_entity, root: "data"
     end
@@ -43,15 +41,12 @@ class Api::V1::AreasController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_area
-      @area = Area.find(params[:id])
+      @area = Area.area_by_id(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def area_params
-      params.fetch(:area, {})
+      params.require(:area).permit(:area_name)
     end
 
-    def filtering_params(params)
-      params.slice(:area_name)
-    end
 end

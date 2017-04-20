@@ -10,7 +10,6 @@ class Concept < ApplicationRecord
   end
 
   def self.concept_by_id(id)
-    #includes(:payday_details).find_by_id(id)
     find_by_id(id)
   end
 

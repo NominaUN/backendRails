@@ -13,10 +13,9 @@ class AreasControllerTest < ActionDispatch::IntegrationTest
   test "should create area" do
     assert_difference('Area.count') do
       post api_v1_areas_url, params: { area: { area_name: "dos" }}, as: :json
-      assert_response 201
     end
-
-    
+	
+    assert_response 201	
   end
 
   test "should show area" do

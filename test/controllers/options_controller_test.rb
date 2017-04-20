@@ -12,7 +12,7 @@ class OptionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create option" do
     assert_difference('Option.count') do
-      post api_v1_options_url, params: { option: {  } }, as: :json
+      post api_v1_options_url, params: { option: { option_name: "Crear Fondo", insert_action: true, update_action: false, delete_action: true } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class OptionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update option" do
-    patch api_v1_option_url(@option), params: { option: {  } }, as: :json
+    patch api_v1_option_url(@option), params: { option: { delete_action: false } }, as: :json
     assert_response 200
   end
 

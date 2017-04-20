@@ -9,8 +9,8 @@ class EmployeeTest < ActiveSupport::TestCase
 									retirement_date: Date.new(2017,7,10), salary: 1500000.0, transport_aid: true, integral_salary: false)
 	end
 
-  test "should be a valid record to save" do
-	assert @employee.valid?, "The record: #{@employee.attributes} \n should be ok \n The errors in employee are: #{@employee.errors.messages}"
+    test "should be a valid record to save" do
+	    assert @employee.valid?, "The record: #{@employee.attributes} \n should be ok \n The errors in employee are: #{@employee.errors.messages}"
 	end
 
 	test "should not validate employee with document_number equal to zero" do

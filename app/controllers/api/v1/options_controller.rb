@@ -18,7 +18,7 @@ class Api::V1::OptionsController < ApplicationController
     @option = Option.new(option_params)
 
     if @option.save
-      render json: @option, status: :created, location: @option, root: "data"
+      render json: @option, status: :created, root: "data"
     else
       render json: @option.errors, status: :unprocessable_entity, root: "data"
     end
@@ -41,11 +41,11 @@ class Api::V1::OptionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_option
-      @option = Option.find(params[:id])
+      @option = Option.option_by_id(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def option_params
-      params.fetch(:option, {})
+      params.require(:option).permit(:option_name,:insert_action,:update_action,:delete_action)
     end
 end

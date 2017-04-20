@@ -18,7 +18,7 @@ class Api::V1::LogsController < ApplicationController
     @log = Log.new(log_params)
 
     if @log.save
-      render json: @log, status: :created, location: @log, root: "data"
+      render json: @log, status: :created, root: "data"
     else
       render json: @log.errors, status: :unprocessable_entity, root: "data"
     end
@@ -46,6 +46,6 @@ class Api::V1::LogsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def log_params
-      params.fetch(:log, {})
+      params.require(:log).permit(:log_time,:user_id,:option_id)
     end
 end

@@ -16,6 +16,5 @@ class Position < ActiveRecord::Base
       id: id
     })
   end
-
   
 end

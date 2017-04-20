@@ -12,7 +12,7 @@ class VacationsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create vacation" do
     assert_difference('Vacation.count', +1) do
-      post api_v1_vacations_url, params: { vacation: {  } }, as: :json
+      post api_v1_vacations_url, params: { vacation: { paid_days: 16, taken_days: 15, start_date: Date.new(2017,1,3), end_date: Date.new(2017,1,19), employee_id: 1, payday_master_id: 1 } }, as: :json
     end
 
     assert_response :success
@@ -24,7 +24,7 @@ class VacationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update vacation" do
-    patch api_v1_vacation_url(@vacation), params: { vacation: {  } }, as: :json
+    patch api_v1_vacation_url(@vacation), params: { vacation: { paid_days: 15, taken_days: 16 } }, as: :json
     assert_response 200
   end
 

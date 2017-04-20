@@ -12,10 +12,7 @@ class Vacation < ApplicationRecord
   end
 
   def self.vacation_by_id(id,page=1,per_page=20)
-    load_vacations(page,per_page)
-        .where(vacations:{
-            id: id
-        })[0]
+    includes(:employee, :payday_master).find_by_id(id)
   end
 
   def self.vacations_by_ids(ids,page = 1, per_page = 20)

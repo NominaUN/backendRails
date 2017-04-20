@@ -24,7 +24,7 @@ class PositionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update position" do
-    patch api_v1_position_url(@position), params: { position: {position_name:"Technology"  } }, as: :json
+    patch api_v1_position_url(@position), params: { position: {position_name: "Technology" } }, as: :json
     assert_response 200
   end
 

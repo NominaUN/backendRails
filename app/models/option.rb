@@ -8,12 +8,11 @@ class Option < ApplicationRecord
   default_scope {order("options.option_name ASC")}
   
   def self.load_options(page=1,per_page=20)
-	joins(:logs, :users)
-		.paginate(:page => page,:per_page => per_page)
+	paginate(:page => page,:per_page => per_page)
   end
   
   def self.option_by_id(id)
-    joins(:logs, :users).find_by_id(id)
+    find_by_id(id)
   end
   
   def self.options_by_ids(ids, page=1, per_page=20)
