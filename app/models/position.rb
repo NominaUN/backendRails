@@ -17,15 +17,5 @@ class Position < ActiveRecord::Base
     })
   end
 
-  def self.positions_by_ids(ids, page=1, per_page=20)
-    load_positions(page, per_page).where(positions:{
-        id: ids
-    })
-  end
-
-  def self.positions_not_by_ids(ids, page=1, per_page=20)
-    load_positions(page,per_page).where.not(positions: {
-        id: ids
-    })
-  end
+  
 end
