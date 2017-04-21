@@ -2,6 +2,7 @@ class PaydayDetail < ApplicationRecord
   belongs_to :concept
   belongs_to :employee
   belongs_to :payday_master
+  has_many :novelties
 
   validates :base_value, :win, :loss, :appropiation, :worked_days, :start_date, :end_date, presence: true
   
@@ -13,7 +14,7 @@ class PaydayDetail < ApplicationRecord
   end
 
   def self.payday_detail_by_id(id)
-    includes(:concepts, :employees, :payday_master)
+    includes(:concept, :employee, :payday_master, :novelties)
 		.find_by_id(id)
   end
 

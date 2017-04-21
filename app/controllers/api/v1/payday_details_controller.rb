@@ -18,7 +18,7 @@ class Api::V1::PaydayDetailsController < ApplicationController
     @payday_detail = PaydayDetail.new(payday_detail_params)
 
     if @payday_detail.save
-      render json: @payday_detail, status: :created, location: @payday_detail, root: "data"
+      render json: @payday_detail, status: :created, root: "data"
     else
       render json: @payday_detail.errors, status: :unprocessable_entity, root: "data"
     end
@@ -41,11 +41,12 @@ class Api::V1::PaydayDetailsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_payday_detail
-      @payday_detail = PaydayDetail.find(params[:id])
+      @payday_detail = PaydayDetail.payday_detail_by_id(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def payday_detail_params
-      params.fetch(:payday_detail, {})
+      params.require(:payday_detail).permit(:base_value,:win,:loss, :appropiation, :worked_days, :start_date, :end_date, :employee_id,
+       :concept_id, :payday_master_id)
     end
 end
