@@ -27,7 +27,7 @@ class Employee < ActiveRecord::Base
   end
 
   def self.employee_by_id(id)
-    includes(:area, :position).find_by_id(id)
+    includes(:fonds, :vacations, :novelties, :users, :area, :position,payday_details: [:payday_master]).find_by_id(id)
   end
 
   def self.employees_by_ids(ids, page=1, per_page=20)
