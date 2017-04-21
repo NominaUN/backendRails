@@ -3,6 +3,7 @@ require 'test_helper'
 class LogsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @log = logs(:one)
+    @log2 = FactoryGirl.create(:log)
   end
 
   test "should get index" do
@@ -24,7 +25,7 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update log" do
-    patch api_v1_log_url(@log), params: { log: { user_id: 2 } }, as: :json
+    patch api_v1_log_url(@log2), params: { log: { user_id: 1 } }, as: :json
     assert_response 200
   end
 

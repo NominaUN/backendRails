@@ -42,5 +42,11 @@ FactoryGirl.define do
     employee_id 1
     payday_master_id 1
   end
+
+  factory :log do
+    log_time Date.current
+    user_id 1
+    option_id 1
+  end
   
 end
