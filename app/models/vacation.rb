@@ -11,7 +11,7 @@ class Vacation < ApplicationRecord
 		.paginate(:page => page,:per_page => per_page)
   end
 
-  def self.vacation_by_id(id,page=1,per_page=20)
+  def self.vacation_by_id(id)
     includes(:employee, :payday_master).find_by_id(id)
   end
 

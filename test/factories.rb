@@ -34,4 +34,13 @@ FactoryGirl.define do
     payday_master_id 1
   end
   
+  factory :vacation do
+    paid_days 16
+    taken_days 15
+    start_date Date.new(201713)
+    end_date Date.new(2017119)
+    employee_id 1
+    payday_master_id 1
+  end
+  
 end
