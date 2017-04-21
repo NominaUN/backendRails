@@ -48,5 +48,12 @@ FactoryGirl.define do
     user_id 1
     option_id 1
   end
+
+  factory :user do
+    user_name "a"
+    user_pass "b"
+    user_role "v"
+    employee_id 1
+  end
   
 end
