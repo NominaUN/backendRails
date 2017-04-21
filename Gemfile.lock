@@ -45,6 +45,8 @@ GEM
       tzinfo (~> 1.1)
     arel (7.1.4)
     bcrypt (3.1.11)
+    bcrypt (3.1.11-x64-mingw32)
+    bcrypt (3.1.11-x86-mingw32)
     builder (3.2.3)
     byebug (9.0.6)
     case_transform (0.2)
@@ -65,6 +67,8 @@ GEM
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
+    faker (1.7.3)
+      i18n (~> 0.5)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hashie (3.5.5)
@@ -156,6 +160,7 @@ DEPENDENCIES
   devise_token_auth
   factory_girl
   factory_girl_rails
+  faker
   omniauth
   pg (~> 0.18)
   puma (~> 3.0)
