@@ -18,7 +18,7 @@ class Api::V1::PaydayMastersController < ApplicationController
     @payday_master = PaydayMaster.new(payday_master_params)
 
     if @payday_master.save
-      render json: @payday_master, status: :created, location: @payday_master, root: "data"
+      render json: @payday_master, status: :created, root: "data"
     else
       render json: @payday_master.errors, status: :unprocessable_entity, root: "data"
     end
@@ -41,11 +41,11 @@ class Api::V1::PaydayMastersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_payday_master
-      @payday_master = PaydayMaster.find(params[:id])
+      @payday_master = PaydayMaster.payday_master_by_id(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def payday_master_params
-      params.fetch(:payday_master, {})
+      params.require(:payday_master).permit(:payday_type, :payday_date, :description)
     end
 end
