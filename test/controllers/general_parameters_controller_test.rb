@@ -12,7 +12,7 @@ class GeneralParametersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create general_parameter" do
     assert_difference('GeneralParameter.count') do
-      post api_v1_general_parameters_url, params: { general_parameter: {  } }, as: :json
+      post api_v1_general_parameters_url, params: { general_parameter: { round_type: 2, laboral_days:4, payday:"Quincenal", integral_base: 12 } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class GeneralParametersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update general_parameter" do
-    patch api_v1_general_parameter_url(@general_parameter), params: { general_parameter: {  } }, as: :json
+    patch api_v1_general_parameter_url(@general_parameter), params: { general_parameter: {round_type: 3  } }, as: :json
     assert_response 200
   end
 
