@@ -3,6 +3,7 @@ require 'test_helper'
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:one)
+    @user2 = FactoryGirl.create(:user)
   end
 
   test "should get index" do
@@ -12,7 +13,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create user" do
     assert_difference('User.count') do
-      post api_v1_users_url, params: { user: {  } }, as: :json
+      post api_v1_users_url, params: { user: {user_name: "aa", user_pass: "11", user_role: "22", employee_id:1  } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +25,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update user" do
-    patch api_v1_user_url(@user), params: { user: {  } }, as: :json
+    patch api_v1_user_url(@user2), params: { user: { user_name: "bb" } }, as: :json
     assert_response 200
   end
 

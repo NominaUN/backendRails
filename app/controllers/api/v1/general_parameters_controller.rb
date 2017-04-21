@@ -18,7 +18,7 @@ class Api::V1::GeneralParametersController < ApplicationController
     @general_parameter = GeneralParameter.new(general_parameter_params)
 
     if @general_parameter.save
-      render json: @general_parameter, status: :created, location: @general_parameter, root: "data"
+      render json: @general_parameter, status: :created, root: "data"
     else
       render json: @general_parameter.errors, status: :unprocessable_entity, root: "data"
     end
@@ -46,6 +46,6 @@ class Api::V1::GeneralParametersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def general_parameter_params
-      params.fetch(:general_parameter, {})
+      params.require(:general_parameter).permit(:round_type, :laboral_days, :payday, :integral_base)
     end
 end

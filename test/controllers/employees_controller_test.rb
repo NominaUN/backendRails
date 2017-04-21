@@ -29,7 +29,7 @@ class EmployeesControllerTest < ActionDispatch::IntegrationTest
                                                       transport_aid: false, 
                                                       integral_salary: false, 
                                                       area_id: 1, 
-                                                      position_id: 2 } }, as: :json
+                                                      position_id: 1 } }, as: :json
     end
     assert_response 201
 end
@@ -57,12 +57,12 @@ end
                                                       transport_aid: false, 
                                                       integral_salary: false, 
                                                       area_id: 1, 
-                                                      position_id: 2 }  }, as: :json
+                                                      position_id: 1 }  }, as: :json
     assert_response 200
   end
 
   test "should destroy employee" do
-	skip("make debugging to figure why is not deleting")
+	#skip("make debugging to figure why is not deleting")
     assert_difference('Employee.count', -1) do
       delete api_v1_employee_url(@employee), as: :json
     end

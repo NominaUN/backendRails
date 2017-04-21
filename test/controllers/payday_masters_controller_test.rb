@@ -12,7 +12,7 @@ class PaydayMastersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create payday_master" do
     assert_difference('PaydayMaster.count') do
-      post api_v1_payday_masters_url, params: { payday_master: {  } }, as: :json
+      post api_v1_payday_masters_url, params: { payday_master: {payday_type: "Tipo1", payday_date: 1.year.ago, description: "Normal"  } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class PaydayMastersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update payday_master" do
-    patch api_v1_payday_master_url(@payday_master), params: { payday_master: {  } }, as: :json
+    patch api_v1_payday_master_url(@payday_master), params: { payday_master: { payday_type: "Tipo2" } }, as: :json
     assert_response 200
   end
 

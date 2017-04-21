@@ -18,7 +18,7 @@ class Api::V1::UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      render json: @user, status: :created, location: @user, root: "data"
+      render json: @user, status: :created, root: "data"
     else
       render json: @user.errors, status: :unprocessable_entity, root: "data"
     end
@@ -41,11 +41,11 @@ class Api::V1::UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.user_by_id(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.fetch(:user, {})
+      params.require(:user).permit(:user_name, :user_pass, :user_role,:employee_id)
     end
 end

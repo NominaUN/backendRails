@@ -3,6 +3,7 @@ require 'test_helper'
 class VacationsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @vacation = vacations(:one)
+    @vacation2 = FactoryGirl.create(:vacation)
   end
 
   test "should get index" do
@@ -24,7 +25,7 @@ class VacationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update vacation" do
-    patch api_v1_vacation_url(@vacation), params: { vacation: { paid_days: 15, taken_days: 16 } }, as: :json
+    patch api_v1_vacation_url(@vacation2), params: { vacation: { paid_days: 15, taken_days: 16 } }, as: :json
     assert_response 200
   end
 
