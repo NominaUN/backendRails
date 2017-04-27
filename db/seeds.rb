@@ -13,11 +13,13 @@ require 'faker'
 		)
 end
 
-3.times.do 
+=begin
+3.times do 
 	Area.create!(
 		area_name: Faker::Job.document_type
 		)	
 end
+=end
 
 200.times do 
 	Position.create!(

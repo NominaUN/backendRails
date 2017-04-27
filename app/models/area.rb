@@ -8,7 +8,7 @@ class Area < ActiveRecord::Base
   has_many :employees, dependent: :destroy
 
   def self.load_areas(page=1,per_page=20)
-    paginate(:page => page,:per_page => per_page)
+    includes(:employees).paginate(:page => page,:per_page => per_page)
   end
   
   def self.area_by_id(id)
