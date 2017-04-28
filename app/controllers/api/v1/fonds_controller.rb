@@ -1,9 +1,12 @@
 class Api::V1::FondsController < ApplicationController
+  include SortParams
   before_action :set_fond, only: [:show, :update, :destroy]
+  has_scope :document_type, :document_number, :business_name, :fond_type, :q
 
+  SORTABLE_FIELDS = [:updated_at, :created_at, :document_type, :document_number, :business_name, :fond_type]
   # GET /fonds
   def index
-    @fonds = Fond.load_fonds(params[:page], params[:per_page])
+    @fonds = apply_scopes(Fond).order(sort_params).load_fonds(params[:page], params[:per_page])
 
     render json: @fonds, root: "data"
   end
@@ -50,4 +53,8 @@ class Api::V1::FondsController < ApplicationController
       params.require(:fond).permit(:document_type, :document_number, :business_name, :fond_type)
       #params.fetch(:fond, :page, :per_page, {})
     end
+
+  def sort_params
+    SortParams.sorted_fields(params[:sort], SORTABLE_FIELDS)
+  end
 end
