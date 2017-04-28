@@ -1,9 +1,16 @@
 class Api::V1::ConceptsController < ApplicationController
+  include SortParams
+
+  SORTABLE_FIELDS = [:updated_at, :created_at, :category, :concept_name]
+
+  #has_scope
+  has_scope :category, :concept_name, :q
+
   before_action :set_concept, only: [:show, :update, :destroy]
 
   # GET /concepts
   def index
-    @concepts = Concept.load_concepts( params[:page], params[:per_page])
+    @concepts = apply_scopes(Concept).order(sort_params).load_concepts( params[:page], params[:per_page])
 
     render json: @concepts, root: "data"
   end
@@ -49,4 +56,8 @@ class Api::V1::ConceptsController < ApplicationController
       params.require(:concept).permit(:concept_name, :category)
       #params.fetch(:concept, :page, :per_page, {})
     end
+
+  def sort_params
+    SortParams.sorted_fields(params[:sort], SORTABLE_FIELDS)
+  end
 end
