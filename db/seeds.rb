@@ -5,11 +5,38 @@
 #
   # movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
   # Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
 
+10.times do
+	Area.create!(
+		area_name: Faker::Job.unique.field
+		)
+end
 
+=begin
+3.times do 
+	Area.create!(
+		area_name: Faker::Job.document_type
+		)	
+end
+=end
 
-Area.create!([{area_name: 'Administrativo'},{area_name: 'Investigación y Desarrollo'},{area_name: 'Atención al Cliente'},{area_name: 'Comercial'}])
-Position.create!([{position_name: 'Gerente General'},{position_name: 'Director de I+D'},{position_name: 'Director de Atención al Cliente'},{position_name: 'Gerente Comercial'}])
+200.times do 
+	Position.create!(
+		position_name: Faker::Job.unique.title
+		)	
+end
+
+=begin
+300.times do
+	Employee.create!(
+		
+		)	
+end	
+=end
+
+#Area.create!([{area_name: 'Administrativo'},{area_name: 'Investigación y Desarrollo'},{area_name: 'Atención al Cliente'},{area_name: 'Comercial'}])
+#Position.create!([{position_name: 'Gerente General'},{position_name: 'Director de I+D'},{position_name: 'Director de Atención al Cliente'},{position_name: 'Gerente Comercial'}])
 Concept.create!([{concept_name: 'Salario', category: 'Devengado'},{concept_name: 'Auxilio de Transporte', category: 'Devengado'},
 	{concept_name: 'Salud', category: 'Deducido'},{concept_name: 'Pensión', category: 'Deducido'},{concept_name: 'Vacaciones', category: 'Provisión'},
 	{concept_name: 'Prima', category: 'Pr	ovisión'},{concept_name: 'Cesantías', category: 'Provisión'},

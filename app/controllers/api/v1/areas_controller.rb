@@ -1,9 +1,16 @@
 class Api::V1::AreasController < ApplicationController
+  include SortParams
+
   before_action :set_area, only: [:show, :update, :destroy]
+
+  SORTABLE_FIELDS = [:updated_at, :created_at, :area_name]
+
+  has_scope :area_name
+  has_scope :q
 
   # GET /areas
   def index
-    @areas = Area.load_areas(params[:page], params[:per_page])
+    @areas = apply_scopes(Area).order(sort_params).load_areas(params[:page], params[:per_page])
 
     render json: @areas, root: "data"
   end
@@ -48,5 +55,9 @@ class Api::V1::AreasController < ApplicationController
     def area_params
       params.require(:area).permit(:area_name)
     end
+
+  def sort_params
+    SortParams.sorted_fields(params[:sort], SORTABLE_FIELDS)
+  end
 
 end

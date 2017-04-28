@@ -10,7 +10,13 @@ class Fond < ApplicationRecord
 	has_many :fond_employees, dependent: :destroy
 	has_many :employees, through: :fond_employees
 
-	default_scope {order("fonds.business_name ASC")}
+	#default_scope {order("fonds.business_name ASC")}
+	scope :document_type, -> (t) {where document_type: t}
+	scope :document_number, -> (n) {where document_number: n}
+	scope :business_name, -> (n) {where business_name: n}
+	scope :fond_type, -> (t) {where fond_type: t}
+  scope :q, -> (q) {where("document_type like ? or business_name like ? or fond_type like ?",
+	"%#{q}%","%#{q}%", "%#{q}%")}
 
 	validates_inclusion_of :document_type, in: %w( CC CE NIT)
 

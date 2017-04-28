@@ -21,3 +21,7 @@
 
 en:
   hello: "Hello world"
+
+    #faker:
+        #job:
+            #document_type: [CC, CE, NIT]
