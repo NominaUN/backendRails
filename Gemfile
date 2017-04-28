@@ -27,7 +27,7 @@ gem 'rack-cors'
 
 gem 'devise_token_auth'
 gem 'omniauth'
-
+gem 'rack-attack'
 gem 'has_scope'
 
 group :development, :test do
