@@ -17,9 +17,32 @@ class Employee < ActiveRecord::Base
    
   validates_inclusion_of :document_type, in: %w( CC CE NIT)
 
-  default_scope {order("employees.last_name ASC")}
+  #default_scope {order("employees.last_name ASC")}
 
   scope :document_type, -> (document_type) {where document_type: document_type}
+  scope :document_number, -> (n) {where document_number: n}
+  scope :first_name,-> (n) {where first_name: n}
+  scope :other_name, -> (n) {where other_name: n}
+  scope :last_name, -> (n) {where last_name: n}
+  scope :last_name, -> (n) {where last_name: n}
+  scope :second_surname, -> (n) {where second_surname: n}
+  scope :birthdate, -> (n) {where birthdate: n}
+  scope :birthplace, -> (n) {where birthplace: n}
+  scope :address, -> (n) {where address: n}
+  scope :phones, -> (p) {where phones: p}
+  scope :email, -> (e) {where email: e}
+  scope :admission_date, -> (d) {where admission_date: d}
+  scope :retirement_date, -> (d) {where retirement_date: d}
+  scope :salary, -> (s) {where salary: s}
+  scope :transport_aid, -> (t) {where transport_aid: t}
+  scope :integral_salary, -> (i) {where integral_salary: i}
+  scope :area_id, -> (a) {where area_id: a}
+  scope :position_id, -> (i) {where position_id: i}
+  scope :q, -> (q){where("document_type like :s or first_name like :s or other_name like :s or last_name like :s or second_surname like :s or birthplace like :s or address like :s or email like :s ", s: "%#{q}%")}
+
+
+  # {where("document_type like :s or document_number like :s or first_name like :s or other_name like :s or last_name like :s or second_surname like :s or birthdate like :s or birthplace like :s or address like :s or phones like :s or email like :s or admission_date like :s or retirement_date like :s or salary like :s or transport_aid like :s or integral_salary like :s or area_id like :s or position_id like :s", s: "%#{q}%")}
+
 
   def self.load_employees(page=1,per_page=20)
     includes(:fonds, :payday_details, :vacations, :novelties, :users, :area, :position)
