@@ -6,7 +6,19 @@ class PaydayDetail < ApplicationRecord
 
   validates :base_value, :win, :loss, :appropiation, :worked_days, :start_date, :end_date, presence: true
   
-  default_scope {order("payday_details.start_date ASC")}
+  #default_scope {order("payday_details.start_date ASC")}
+  scope :base_value, -> (v) {where base_value: v}
+  scope :win, -> (w) {where win: w}
+  scope :loss, -> (l) {where loss: l}
+  scope :appropiation, -> (a) {where appropiation: a}
+  scope :worked_days, -> (d) {where worked_days: d}
+  scope :start_date, -> (s) {where start_date: s}
+  scope :end_date, -> (e) {where end_date: e}
+  scope :concept_id, -> (id) {where concept_id: id}
+  scope :employee_id, -> (id) {where employee_id: id}
+  scope :payday_master_id, -> (pm) {where payday_master_id: pm}
+  scope :q, -> (q) {where("cast(base_value as text) like :h or cast(win as text) like :h or cast(loss as text) like :h or cast(appropiation as text) like :h or cast(worked_days as text) like :h or cast(start_date as text) like :h or cast(end_date as text) like :h or cast(concept_id as text) like :h or cast(employee_id as text) like :h or cast(payday_master_id as text) like :h", h:"#{q}%")}
+
 
   def self.load_payday_details(page=1,per_page=20)
 	includes(:concept, :employee, :payday_master)
