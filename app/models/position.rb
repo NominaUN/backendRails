@@ -2,8 +2,9 @@ class Position < ActiveRecord::Base
 
   validates :position_name, presence: true
 
-  default_scope {order("positions.position_name ASC")}
+  #default_scope {order("positions.position_name ASC")}
   scope :position_name, ->(position) {where position_name:  position}
+  scope :q, -> (q) {where("position_name like ?", "%#{q}%")}
 
   has_many :employees
   

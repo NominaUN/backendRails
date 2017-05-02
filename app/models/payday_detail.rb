@@ -17,7 +17,7 @@ class PaydayDetail < ApplicationRecord
   scope :concept_id, -> (id) {where concept_id: id}
   scope :employee_id, -> (id) {where employee_id: id}
   scope :payday_master_id, -> (pm) {where payday_master_id: pm}
-  scope :q, -> (q) {where("cast(base_value as text) like :h or cast(win as text) like :h or cast(loss as text) like :h or cast(appropiation as text) like :h or cast(worked_days as text) like :h or cast(start_date as text) like :h or cast(end_date as text) like :h or cast(concept_id as text) like :h or cast(employee_id as text) like :h or cast(payday_master_id as text) like :h", h:"#{q}%")}
+  scope :q, -> (q) {where("cast(base_value as text) like :h or cast(win as text) like :h or cast(loss as text) like :h or cast(appropiation as text) like :h or cast(worked_days as text) like :h or cast(start_date as text) like :h or cast(end_date as text) like :h or cast(concept_id as text) like :h or cast(employee_id as text) like :h or cast(payday_master_id as text) like :h", h:"%#{q}%")}
 
 
   def self.load_payday_details(page=1,per_page=20)

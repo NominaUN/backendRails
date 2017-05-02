@@ -1,9 +1,13 @@
 class Api::V1::NoveltiesController < ApplicationController
+  include SortParams
   before_action :set_novelty, only: [:show, :update, :destroy]
+  has_scope :novelty_type, :novelty_value, :category, :period, :applied, :description, :percentage1, :percentage2, :percentage3, :employee_id, :payday_detail_id, :q
 
+  SORTABLE_FIELDS = [:updated_at, :created_at,:novelty_type, :novelty_value, :category, :period, :applied, :description, :percentage1, :percentage2, :percentage3, :employee_id, :payday_detail_id]
+  
   # GET /novelties
   def index
-    @novelties = Novelty.load_novelties(params[:page], params[:per_page])
+    @novelties = apply_scopes(Novelty).order(sort_params).load_novelties(params[:page], params[:per_page])
 
     render json: @novelties, root: "data"
   end
@@ -47,5 +51,9 @@ class Api::V1::NoveltiesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def novelty_params
       params.require(:novelty).permit(:novelty_type,:novelty_value,:category,:period,:applied,:description,:percentage1,:percentage2,:percentage3, :employee_id, :payday_detail_id)
+    end
+
+    def sort_params
+      SortParams.sorted_fields(params[:sort], SORTABLE_FIELDS)
     end
 end

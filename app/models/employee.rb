@@ -38,10 +38,7 @@ class Employee < ActiveRecord::Base
   scope :integral_salary, -> (i) {where integral_salary: i}
   scope :area_id, -> (a) {where area_id: a}
   scope :position_id, -> (i) {where position_id: i}
-  scope :q, -> (q){where("document_type like :s or first_name like :s or other_name like :s or last_name like :s or second_surname like :s or birthplace like :s or address like :s or email like :s ", s: "%#{q}%")}
-
-
-  # {where("document_type like :s or document_number like :s or first_name like :s or other_name like :s or last_name like :s or second_surname like :s or birthdate like :s or birthplace like :s or address like :s or phones like :s or email like :s or admission_date like :s or retirement_date like :s or salary like :s or transport_aid like :s or integral_salary like :s or area_id like :s or position_id like :s", s: "%#{q}%")}
+  scope :q, -> (q){where("document_type like :s or cast(document_number as text) like :s or first_name like :s or other_name like :s or last_name like :s or second_surname like :s or cast(birthdate as text) like :s or birthplace like :s or address like :s or cast(phones as text) like :s or email like :s or cast(admission_date as text) like :s or cast(retirement_date as text) like :s or cast(salary as text) like :s or cast(transport_aid as text) like :s or cast(integral_salary as text) like :s or cast(area_id as text) like :s or cast(position_id as text) like :s", s: "%#{q}%")}
 
 
   def self.load_employees(page=1,per_page=20)

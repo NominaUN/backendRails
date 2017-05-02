@@ -3,8 +3,11 @@ class PaydayMaster < ApplicationRecord
   has_many :vacations, dependent: :destroy
   has_many :payday_details, dependent: :destroy
   
-  default_scope {order("payday_masters.payday_date ASC")}
-  
+  #default_scope {order("payday_masters.payday_date ASC")}
+  scope :payday_type, -> (t) {where payday_type: t}
+  scope :payday_date, -> (d) {where payday_date: d}
+  scope :description, -> (d) {where description: d}
+  scope :q, -> (q) {where("payday_type like :h or cast(payday_date as text) like :h or description like :h ",h:"%#{q}%")}
   def self.load_payday_masters(page=1,per_page=20)
     paginate(:page => page,:per_page => per_page)
   end
