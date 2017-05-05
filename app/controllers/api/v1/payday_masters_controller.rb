@@ -1,9 +1,11 @@
 class Api::V1::PaydayMastersController < ApplicationController
+  include SortParams
   before_action :set_payday_master, only: [:show, :update, :destroy]
-
+  has_scope :payday_type, :payday_date, :description, :q
+  SORTABLE_FIELDS=[:updated_at, :created_at, :payday_type, :payday_date, :description, :q]
   # GET /payday_masters
   def index
-    @payday_masters = PaydayMaster.load_payday_masters(params[:page], params[:per_page])
+    @payday_masters = apply_scopes(PaydayMaster).order(sort_params).load_payday_masters(params[:page], params[:per_page])
 
     render json: @payday_masters, root: "data"
   end
@@ -47,5 +49,8 @@ class Api::V1::PaydayMastersController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def payday_master_params
       params.require(:payday_master).permit(:payday_type, :payday_date, :description)
+    end
+    def sort_params
+      SortParams.sorted_fields(params[:sort],SORTABLE_FIELDS)
     end
 end

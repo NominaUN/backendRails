@@ -4,7 +4,14 @@ class Vacation < ApplicationRecord
   validates :paid_days, :taken_days, :start_date, :end_date, presence: true
   validates :paid_days, :taken_days, :numericality =>  {:greater_than => 0}
 
-  default_scope {order("vacations.start_date ASC")}
+  #default_scope {order("vacations.start_date ASC")}
+  scope :paid_days, -> (d) {where paid_days: d}
+  scope :taken_days, -> (d) {where taken_days: d}
+  scope :start_date, -> (d) {where start_date: d}
+  scope :end_date, -> (d) {where end_date: d}
+  scope :employee_id, -> (id) {where employee_id: id}
+  scope :payday_master_id, -> (id) {where payday_master_id: id}
+  scope :q, -> (q) {where("cast(paid_days as text) like :h or cast(taken_days as text) like :h or cast(start_date as text) like :h or cast(end_date as text) like :h or cast(employee_id as text) like :h or cast(payday_master_id as text) like :h" , h:"%#{q}%")}
 
   def self.load_vacations(page=1,per_page=20)
 	includes(:employee, :payday_master)

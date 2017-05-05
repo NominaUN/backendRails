@@ -1,9 +1,11 @@
 class Api::V1::FondEmployeesController < ApplicationController
+  include SortParams
   before_action :set_fond_employee, only: [:show, :update, :destroy]
-
+  has_scope :fond_id, :employee_id, :q
+  SORTABLE_FIELDS= [ :fond_id, :employee_id, :id]
   # GET /fond_employees
   def index
-    @fond_employees = FondEmployee.load_fonds_employees(params[:page], params[:per_page])
+    @fond_employees = apply_scopes(FondEmployee).order(sort_params).load_fonds_employees(params[:page], params[:per_page])
 
     render json: @fond_employees, root: "data"
   end
@@ -48,5 +50,8 @@ class Api::V1::FondEmployeesController < ApplicationController
     def fond_employee_params
       params.require(:fond_employee).permit(:employee_id, :fond_id)
       #params.fetch(:fond_employee, :byFond, :page, :per_page, {})
+    end
+    def sort_params
+      SortParams.sorted_fields(params[:sort], SORTABLE_FIELDS)
     end
 end

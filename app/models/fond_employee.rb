@@ -1,7 +1,10 @@
 class FondEmployee < ApplicationRecord
   belongs_to :employee
   belongs_to :fond
-  default_scope {order("fond_employees.employee_id ASC")}
+  #default_scope {order("fond_employees.employee_id ASC")}
+  scope :fond_id, -> (id) {where fond_id: id}
+  scope :employee_id, -> (id) {where employee_id: id}
+  scope :q, -> (q) {where("cast(fond_id as text) like :h or cast(employee_id as text) like :h", h:"%#{q}%")}
 
 	def self.load_fonds_employees(page=1,per_page=20)
 		includes(:employee, :fond)

@@ -1,9 +1,11 @@
 class Api::V1::VacationsController < ApplicationController
+  include SortParams
   before_action :set_vacation, only: [:show, :update, :destroy]
-
+  has_scope :paid_days, :taken_days, :start_date, :end_date, :employee_id, :payday_master_id, :q
+  SORTABLE_FIELDS =[:updated_at, :created_at, :paid_days, :taken_days, :start_date, :end_date, :employee_id, :payday_master_id]
   # GET /vacations
   def index
-    @vacations = Vacation.load_vacations(params[:page], params[:per_page])
+    @vacations = apply_scopes(Vacation).order(sort_params).load_vacations(params[:page], params[:per_page])
 
     render json: @vacations, root: "data"
   end
@@ -48,4 +50,8 @@ class Api::V1::VacationsController < ApplicationController
     def vacation_params
       params.require(:vacation).permit(:paid_days,:taken_days,:start_date,:end_date,:employee_id,:payday_master_id)
     end
+
+    def sort_params
+      SortParams.sorted_fields(params[:sort],SORTABLE_FIELDS)
+    end    
 end
