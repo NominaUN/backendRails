@@ -103,6 +103,8 @@ GEM
     pg (0.20.0-x86-mingw32)
     puma (3.8.2)
     rack (2.0.1)
+    rack-attack (5.0.1)
+      rack
     rack-cors (0.4.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -168,6 +170,7 @@ DEPENDENCIES
   omniauth
   pg (~> 0.18)
   puma (~> 3.0)
+  rack-attack
   rack-cors
   rails (~> 5.0.2)
   tzinfo-data
