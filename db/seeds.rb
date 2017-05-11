@@ -93,5 +93,6 @@ GeneralParameter.create!([{round_type: 100, laboral_days: 5, payday: 'QUINCENAL'
 
 
 
-#Usuario.create!(email: 'admin@admin.com', nickname: 'UOne', name: 'User One', password: '12345678')
-#Usuario.create!(email: 'user@example.com', nickname: 'UOne', name: 'User One', password: "monkey67")
+Usuario.create!(email: 'admin@admin.com', nickname: 'UOne', name: 'User One', password: '12345678', tokens: nil)
+
+
