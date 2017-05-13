@@ -93,6 +93,6 @@ GeneralParameter.create!([{round_type: 100, laboral_days: 5, payday: 'QUINCENAL'
 
 
 
-Usuario.create!(email: 'admin@admin.com', nickname: 'UOne', name: 'User One', password: '12345678', tokens: nil)
-
-
+Usuario.create!(email: 'admin@admin.com', nickname: 'UOne', name: 'User One', 
+	password: '12345678', tokens: nil, notifications: true, user_role: 'admin', notifications_days: 10)
+ 
