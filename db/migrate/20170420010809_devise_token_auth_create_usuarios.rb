@@ -36,7 +36,7 @@ class DeviseTokenAuthCreateUsuarios < ActiveRecord::Migration[5.0]
       #DATOS DE PRUEBA
       t.boolean :notifications
       t.string :user_role
-      t.integer :days
+      t.integer :notifications_days
       #t.references :employee, foreign_key: true
 
 
@@ -59,5 +59,12 @@ class DeviseTokenAuthCreateUsuarios < ActiveRecord::Migration[5.0]
     add_index :usuarios, :reset_password_token, unique: true
     add_index :usuarios, :confirmation_token,   unique: true
     # add_index :usuarios, :unlock_token,       unique: true
+
+    add_index :usuarios, :user_role
+    add_index :usuarios, :notifications
+    add_index :usuarios, :notifications_days
+
+
+
   end
 end

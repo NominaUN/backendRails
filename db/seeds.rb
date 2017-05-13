@@ -21,7 +21,7 @@ end
 end
 =end
 
-200.times do 
+5.times do 
 	Position.create!(
 		position_name: Faker::Job.unique.title
 		)	
@@ -93,6 +93,7 @@ GeneralParameter.create!([{round_type: 100, laboral_days: 5, payday: 'QUINCENAL'
 
 
 
-Usuario.create!(email: 'admin@admin.com', nickname: 'UOne', name: 'User One', 
-	password: '12345678', tokens: nil, notifications: true, user_role: 'admin', notifications_days: 10)
+Usuario.create!(email: 'admin@admin.com', nickname: 'UOne', name: 'User One', password: '12345678', tokens: nil, notifications: true, user_role: 'admin', notifications_days: 10)
+ 
+#Usuario.create!(email: 'admin@admin.com', nickname: 'UOne', name: 'User One', password: '12345678', tokens: nil)
  
