@@ -178,7 +178,7 @@ ActiveRecord::Schema.define(version: 20170420010809) do
     t.string   "unconfirmed_email"
     t.boolean  "notifications"
     t.string   "user_role"
-    t.integer  "days"
+    t.integer  "notifications_days"
     t.string   "name"
     t.string   "nickname"
     t.string   "image"
@@ -188,8 +188,11 @@ ActiveRecord::Schema.define(version: 20170420010809) do
     t.datetime "updated_at",                               null: false
     t.index ["confirmation_token"], name: "index_usuarios_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_usuarios_on_email", unique: true, using: :btree
+    t.index ["notifications"], name: "index_usuarios_on_notifications", using: :btree
+    t.index ["notifications_days"], name: "index_usuarios_on_notifications_days", using: :btree
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
     t.index ["uid", "provider"], name: "index_usuarios_on_uid_and_provider", unique: true, using: :btree
+    t.index ["user_role"], name: "index_usuarios_on_user_role", using: :btree
   end
 
   create_table "vacations", force: :cascade do |t|
