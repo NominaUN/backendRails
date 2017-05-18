@@ -9,6 +9,5 @@ class EmployeeSerializer < ActiveModel::Serializer
     has_many :fonds, through: :fond_employees
     has_many :payday_details
     has_many :vacations
-    has_many :novelties
-    has_many :users    
+    has_many :novelties   
 end

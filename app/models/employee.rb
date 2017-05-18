@@ -13,7 +13,6 @@ class Employee < ActiveRecord::Base
   has_many :payday_details
   has_many :vacations
   has_many :novelties
-  has_many :users
    
   validates_inclusion_of :document_type, in: %w( CC CE NIT)
 
@@ -43,12 +42,12 @@ class Employee < ActiveRecord::Base
 
 
   def self.load_employees(page=1,per_page=20)
-    includes(:fonds, :payday_details, :vacations, :novelties, :users, :area, :position)
+    includes(:fonds, :payday_details, :vacations, :novelties, :area, :position)
         .paginate(:page => page,:per_page => per_page)
   end
 
   def self.employee_by_id(id)
-    includes(:fonds, :vacations, :novelties, :users, :area, :position,payday_details: [:payday_master]).find_by_id(id)
+    includes(:fonds, :vacations, :novelties,  :area, :position,payday_details: [:payday_master]).find_by_id(id)
   end
 
   def self.employees_by_ids(ids, page=1, per_page=20)
