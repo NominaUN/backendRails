@@ -5,7 +5,7 @@ class EmployeeTest < ActiveSupport::TestCase
 	def setup	
 		@employee = Employee.new(position_id: 1, area_id: 1, document_type: "CC", document_number: 123456, first_name: "Manuel",
 									other_name: "Mauricio", last_name: "Perez", second_surname: "Rodriguez", birthdate: Date.new(1990,11,22), birthplace:"Bogota",
-									address: "Cra 4 # 22", phones: "7334425", email: "maur@hotmail.com", admission_date: Date.new(2017,1,10),
+									address: "Cra 4 # 22", phones: "7334425", email: "maur@hotmail.com", contract: "Fijo", admission_date: Date.new(2017,1,10),
 									retirement_date: Date.new(2017,7,10), salary: 1500000.0, transport_aid: true, integral_salary: false)
 	end
 

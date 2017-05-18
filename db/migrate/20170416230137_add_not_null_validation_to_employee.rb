@@ -15,5 +15,6 @@ class AddNotNullValidationToEmployee < ActiveRecord::Migration[5.0]
 	change_column_null(:employees, :integral_salary, false)
     change_column_null(:employees, :address, false)
     change_column_null(:employees, :email, false)
+	change_column_null(:employees, :contract, false)
   end
 end

@@ -11,7 +11,6 @@ class CreateNovelties < ActiveRecord::Migration[5.0]
       t.numeric :percentage2
       t.numeric :percentage3
       t.references :employee, foreign_key: true
-      t.references :payday_detail, foreign_key: true
 
       t.timestamps
     end

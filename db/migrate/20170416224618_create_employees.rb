@@ -12,6 +12,7 @@ class CreateEmployees < ActiveRecord::Migration[5.0]
       t.string :address
       t.string :phones
       t.string :email
+	  t.string :contract
       t.date :admission_date
       t.date :retirement_date
       t.numeric :salary

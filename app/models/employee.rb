@@ -3,7 +3,7 @@ class Employee < ActiveRecord::Base
   validates :document_number, :numericality => { :greater_than => 0 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :document_type, :document_number, :birthdate, :first_name, :admission_date, :area_id, :birthplace, presence: true
-  validates  :last_name, :phones, :position_id, :salary, :address, presence: true
+  validates :last_name, :phones, :position_id, :salary, :address, :contract, presence: true
   validates :email, presence: true, length: {maximum: 255}, format: {with:  VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
   belongs_to :area
   belongs_to :position
@@ -31,6 +31,7 @@ class Employee < ActiveRecord::Base
   scope :address, -> (n) {where address: n}
   scope :phones, -> (p) {where phones: p}
   scope :email, -> (e) {where email: e}
+  scope :contract, -> (e) {where contract: c}
   scope :admission_date, -> (d) {where admission_date: d}
   scope :retirement_date, -> (d) {where retirement_date: d}
   scope :salary, -> (s) {where salary: s}
@@ -38,7 +39,7 @@ class Employee < ActiveRecord::Base
   scope :integral_salary, -> (i) {where integral_salary: i}
   scope :area_id, -> (a) {where area_id: a}
   scope :position_id, -> (i) {where position_id: i}
-  scope :q, -> (q){where("document_type like :s or cast(document_number as text) like :s or first_name like :s or other_name like :s or last_name like :s or second_surname like :s or cast(birthdate as text) like :s or birthplace like :s or address like :s or cast(phones as text) like :s or email like :s or cast(admission_date as text) like :s or cast(retirement_date as text) like :s or cast(salary as text) like :s or cast(transport_aid as text) like :s or cast(integral_salary as text) like :s or cast(area_id as text) like :s or cast(position_id as text) like :s", s: "%#{q}%")}
+  scope :q, -> (q){where("document_type like :s or cast(document_number as text) like :s or first_name like :s or other_name like :s or last_name like :s or second_surname like :s or cast(birthdate as text) like :s or birthplace like :s or address like :s or cast(phones as text) like :s or email like :s or contract like :s or cast(admission_date as text) like :s or cast(retirement_date as text) like :s or cast(salary as text) like :s or cast(transport_aid as text) like :s or cast(integral_salary as text) like :s or cast(area_id as text) like :s or cast(position_id as text) like :s", s: "%#{q}%")}
 
 
   def self.load_employees(page=1,per_page=20)

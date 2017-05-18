@@ -1,9 +1,9 @@
 class Api::V1::NoveltiesController < ApplicationController
   include SortParams
   before_action :set_novelty, only: [:show, :update, :destroy]
-  has_scope :novelty_type, :novelty_value, :category, :period, :applied, :description, :percentage1, :percentage2, :percentage3, :employee_id, :payday_detail_id, :q
+  has_scope :novelty_type, :novelty_value, :category, :period, :applied, :description, :percentage1, :percentage2, :percentage3, :employee_id, :q
 
-  SORTABLE_FIELDS = [:updated_at, :created_at,:novelty_type, :novelty_value, :category, :period, :applied, :description, :percentage1, :percentage2, :percentage3, :employee_id, :payday_detail_id]
+  SORTABLE_FIELDS = [:updated_at, :created_at,:novelty_type, :novelty_value, :category, :period, :applied, :description, :percentage1, :percentage2, :percentage3, :employee_id]
   
   # GET /novelties
   def index
@@ -50,7 +50,7 @@ class Api::V1::NoveltiesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def novelty_params
-      params.require(:novelty).permit(:novelty_type,:novelty_value,:category,:period,:applied,:description,:percentage1,:percentage2,:percentage3, :employee_id, :payday_detail_id)
+      params.require(:novelty).permit(:novelty_type,:novelty_value,:category,:period,:applied,:description,:percentage1,:percentage2,:percentage3,:employee_id)
     end
 
     def sort_params
