@@ -1,9 +1,9 @@
 class Api::V1::EmployeesController < ApplicationController
   include SortParams
   before_action :set_employee, only: [:show, :update, :destroy]
-  has_scope :document_type, :document_number, :first_name, :other_name, :last_name, :second_surname, :birthdate, :birthplace, :address, :phones, :email, :admission_date, :retirement_date, :salary, :transport_aid, :integral_salary, :area_id, :position_id, :q
+  has_scope :document_type, :document_number, :first_name, :other_name, :last_name, :second_surname, :birthdate, :birthplace, :address, :phones, :email, :contract, :admission_date, :retirement_date, :salary, :transport_aid, :integral_salary, :area_id, :position_id, :q
 
-  SORTABLE_FIELDS = [:updated_at, :created_at, :document_type, :document_number, :first_name, :other_name, :last_name, :second_surname, :birthdate, :birthplace, :address, :phones, :email, :admission_date, :retirement_date, :salary, :transport_aid, :integral_salary, :area_id, :position_id]
+  SORTABLE_FIELDS = [:updated_at, :created_at, :document_type, :document_number, :first_name, :other_name, :last_name, :second_surname, :birthdate, :birthplace, :address, :phones, :email, :contract, :admission_date, :retirement_date, :salary, :transport_aid, :integral_salary, :area_id, :position_id]
   # GET /employees
   def index
     @employees = apply_scopes(Employee).order(sort_params).load_employees(params[:page], params[:per_page])
@@ -49,7 +49,7 @@ class Api::V1::EmployeesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def employee_params
-      params.require(:employee).permit(:document_type,:document_number,:first_name,:other_name,:last_name,:second_surname,:birthdate,:birthplace,:address,:phones,:email,:admission_date,:retirement_date,:salary,:transport_aid,:integral_salary,:area_id,:position_id)
+      params.require(:employee).permit(:document_type,:document_number,:first_name,:other_name,:last_name,:second_surname,:birthdate,:birthplace,:address,:phones,:email,:contract,:admission_date,:retirement_date,:salary,:transport_aid,:integral_salary,:area_id,:position_id)
     end
 
     def sort_params

@@ -4,5 +4,6 @@ class AddNotNullValidationToGeneralParameter < ActiveRecord::Migration[5.0]
     change_column_null(:general_parameters, :laboral_days, false)
 	change_column_null(:general_parameters, :payday, false)
     change_column_null(:general_parameters, :integral_base, false)
+	change_column_null(:general_parameters, :auto_liquidation, false)
   end
 end

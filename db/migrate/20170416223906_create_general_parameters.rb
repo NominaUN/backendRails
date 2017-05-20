@@ -5,6 +5,7 @@ class CreateGeneralParameters < ActiveRecord::Migration[5.0]
       t.integer :laboral_days
       t.string :payday
       t.numeric :integral_base
+	  t.boolean :auto_liquidation
 
       t.timestamps
     end

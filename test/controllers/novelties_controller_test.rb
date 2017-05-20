@@ -22,8 +22,7 @@ class NoveltiesControllerTest < ActionDispatch::IntegrationTest
                                                       percentage1: "100.0",
                                                       percentage2: "66.67",
                                                       percentage3: "50.0",
-                                                      employee_id: "1",
-                                                      payday_detail_id: "1"
+                                                      employee_id: "1"
                                                      } }, as: :json
     end
 
@@ -46,8 +45,7 @@ class NoveltiesControllerTest < ActionDispatch::IntegrationTest
                                                             percentage1: "100.0",
                                                             percentage2: "66.67",
                                                             percentage3: "50.0",
-                                                            employee_id:"1",
-                                                            payday_detail_id:"1"
+                                                            employee_id:"1"
                                                             } }, as: :json
     assert_response 200
   end

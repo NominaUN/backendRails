@@ -2,8 +2,8 @@ require 'test_helper'
 
 class NoveltyTest < ActiveSupport::TestCase
   def setup 
-    @novelty= Novelty.new(novelty_type: "Devengado", novelty_value: 100000.0, category: "Novedad", period: 1, applied: 0, description: "Prestamo",
-		percentage1: 0, percentage2: 0, percentage3: 0, employee_id: 1, payday_detail_id: 1)
+    @novelty= Novelty.new(novelty_type: "Devengado", novelty_value: 100000.0, category: "Otros", period: 1, applied: 0, description: "Prestamo",
+		percentage1: 0, percentage2: 0, percentage3: 0, employee_id: 1)
   end 
  
   test "should be a valid record" do 
@@ -46,8 +46,4 @@ class NoveltyTest < ActiveSupport::TestCase
 	assert_not @novelty.valid? 
   end 
 
-  test "payday_detail_id should be present" do 
-	@novelty.payday_detail_id = nil 
-	assert_not @novelty.valid? 
-  end
 end

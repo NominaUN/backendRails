@@ -272,3 +272,32 @@ CREATE TRIGGER liquidate
   ON public.payday_masters
   FOR EACH ROW
   EXECUTE PROCEDURE public.liquidate();
+
+-- Function: public.create_user()
+
+-- DROP FUNCTION public.create_user();
+
+CREATE OR REPLACE FUNCTION public.create_user()
+  RETURNS trigger AS
+$BODY$
+BEGIN
+    INSERT INTO users(email, uid, nickname, name, encrypted_password, notifications, user_role, notifications_days, employee, created_at, updated_at)
+	VALUES (NEW.email, NEW.email, NEW.last_name||' '||NEW.first_name, NEW.first_name, '$2a$10$NxBPDQpko2/CU2Oo7vNjTuKTfg1ZyJdWi3z0XSSqfOcRvqeSWgEQm', true, 'employee', 10, NEW.id, now(), now());
+    RETURN NEW;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION public.create_user()
+  OWNER TO postgres;
+
+-- Trigger: create_user on public.employees
+
+-- DROP TRIGGER create_user ON public.employees;
+
+CREATE TRIGGER create_user
+  AFTER INSERT
+  ON public.employees
+  FOR EACH ROW
+  EXECUTE PROCEDURE public.create_user();
+

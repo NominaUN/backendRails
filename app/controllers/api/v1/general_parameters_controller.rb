@@ -46,6 +46,6 @@ class Api::V1::GeneralParametersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def general_parameter_params
-      params.require(:general_parameter).permit(:round_type, :laboral_days, :payday, :integral_base)
+      params.require(:general_parameter).permit(:round_type, :laboral_days, :payday, :integral_base, :auto_liquidation)
     end
 end

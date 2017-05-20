@@ -1,6 +1,6 @@
 class DeviseTokenAuthCreateUsuarios < ActiveRecord::Migration[5.0]
   def change
-    create_table(:usuarios) do |t|
+    create_table(:users) do |t|
       ## Required
       t.string :provider, :null => false, :default => "email"
       t.string :uid, :null => false, :default => ""
@@ -37,10 +37,7 @@ class DeviseTokenAuthCreateUsuarios < ActiveRecord::Migration[5.0]
       t.boolean :notifications
       t.string :user_role
       t.integer :notifications_days
-      #t.references :employee, foreign_key: true
-
-
-
+      t.integer :employee
 
       ## User Info
       t.string :name
@@ -54,17 +51,16 @@ class DeviseTokenAuthCreateUsuarios < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :usuarios, :email,                unique: true
-    add_index :usuarios, [:uid, :provider],     unique: true
-    add_index :usuarios, :reset_password_token, unique: true
-    add_index :usuarios, :confirmation_token,   unique: true
-    # add_index :usuarios, :unlock_token,       unique: true
+    add_index :users, :email,                unique: true
+    add_index :users, [:uid, :provider],     unique: true
+    add_index :users, :reset_password_token, unique: true
+    add_index :users, :confirmation_token,   unique: true
+    # add_index :users, :unlock_token,       unique: true
 
-    add_index :usuarios, :user_role
-    add_index :usuarios, :notifications
-    add_index :usuarios, :notifications_days
-
-
+    add_index :users, :user_role
+    add_index :users, :notifications
+    add_index :users, :notifications_days
+	add_index :users, :employee
 
   end
 end
