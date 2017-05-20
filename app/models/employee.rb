@@ -8,12 +8,12 @@ class Employee < ActiveRecord::Base
   belongs_to :area
   belongs_to :position
   
-  has_many :fond_employees
+  has_many :fond_employees,  dependent: :destroy
   has_many :fonds, through: :fond_employees
-  has_many :payday_details
-  has_many :vacations
-  has_many :novelties
-  has_many :users
+  has_many :payday_details,  dependent: :destroy
+  has_many :vacations,  dependent: :destroy
+  has_many :novelties,  dependent: :destroy
+  has_many :users,  dependent: :destroy
    
   validates_inclusion_of :document_type, in: %w( CC CE NIT)
 
