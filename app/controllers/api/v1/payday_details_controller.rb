@@ -13,7 +13,14 @@ class Api::V1::PaydayDetailsController < ApplicationController
 
   # GET /payday_details/1
   def show
-    render json: @payday_detail, root: "data"
+    respond_to  do |format|
+      format.json {  render json: @payday_detail, root: "data" }
+      format.pdf do
+        pdf = Prawn::Document.new
+        pdf.text "hello world"
+        send_data pdf.render
+      end
+    end
   end
 
   # POST /payday_details

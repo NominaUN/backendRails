@@ -29,6 +29,7 @@ gem 'devise_token_auth'
 gem 'omniauth'
 gem 'rack-attack'
 gem 'has_scope'
+gem 'prawn'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
