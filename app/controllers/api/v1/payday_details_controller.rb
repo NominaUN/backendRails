@@ -19,9 +19,10 @@ class Api::V1::PaydayDetailsController < ApplicationController
     respond_to  do |format|
       format.json {  render json: @payday_detail, root: "data" }
       format.pdf do
-        pdf = Prawn::Document.new
-        pdf.text "hello world"
-        send_data pdf.render
+        pdf = PaydayDetailPdf.new(@payday_detail)
+        send_data pdf.render, filename: "liquidation_#{@payday_detail.id}.pdf",
+                  type: "application/pdf",
+                  disposition: "inline"
       end
     end
   end
