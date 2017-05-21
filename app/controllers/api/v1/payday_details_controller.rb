@@ -1,3 +1,6 @@
+class ApplicationController < ActionController::API
+  include ActionController::MimeResponds
+end
 class Api::V1::PaydayDetailsController < ApplicationController
   include SortParams
   before_action :set_payday_detail, only: [:show, :update, :destroy]

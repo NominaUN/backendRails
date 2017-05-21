@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :general_parameters
-      resources :payday_details
+      resources :payday_details, defaults: {format: :json}
       resources :payday_masters
 
       resources :areas
