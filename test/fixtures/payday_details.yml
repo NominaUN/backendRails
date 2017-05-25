@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  base_value: 9.99
+  win: 9.99
+  loss: 9.99
+  appropiation: 9.99
+  worked_days: 9.99
+  start_date: 2017-03-22
+  end_date: 2017-03-22
+  concept_id: one
+  employee_id: one
+  payday_master_id: one
