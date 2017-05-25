@@ -1,6 +1,10 @@
+class ApplicationController < ActionController::API
+  include ActionController::MimeResponds
+end
 class Api::V1::PaydayMastersController < ApplicationController
   include SortParams
   before_action :set_payday_master, only: [:show, :update, :destroy]
+  before_action :set_payday_master_pdf, only: [:show]
   has_scope :payday_type, :payday_date, :description, :q
   SORTABLE_FIELDS=[:updated_at, :created_at, :payday_type, :payday_date, :description, :q]
   # GET /payday_masters
@@ -12,7 +16,15 @@ class Api::V1::PaydayMastersController < ApplicationController
 
   # GET /payday_masters/1
   def show
-    render json: @payday_master, root: "data"
+    respond_to do |format|
+      format.json {render json: @payday_master, root: "data"}
+      format.pdf do
+        pdf = PaydayMasterPdf.new(@payday_master,@payday_details_master)
+        send_data pdf.render, filename: "liquidation_#{@payday_master.id}.pdf",
+                  type: "application/pdf",
+                  disposition: "inline"
+      end
+    end
   end
 
   # POST /payday_masters
@@ -44,6 +56,10 @@ class Api::V1::PaydayMastersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_payday_master
       @payday_master = PaydayMaster.payday_master_by_id(params[:id])
+    end
+
+    def set_payday_master_pdf
+      @payday_details_master = PaydayDetail.payday_details_by_payday_master(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
