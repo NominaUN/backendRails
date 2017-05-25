@@ -30,6 +30,7 @@ gem 'omniauth'
 gem 'rack-attack'
 gem 'has_scope'
 gem 'prawn'
+gem 'prawn-table'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
